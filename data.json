@@ -982,6 +982,12 @@
       "url": "https://goh4m.com/",
       "note": "Custom wellness plans start at $235 per 3 months, with free consult and onboarding; labs are separate. The page does not establish a complete testosterone-specific cost, so this is not ranked.",
       "checked": "2026-11-04"
+    },
+    {
+      "name": "Ryze HRT",
+      "url": "https://www.ryzehrt.com",
+      "note": "Online, all 50 states. Men's HRT \"starting as low as $85/month\"; what that includes and lab costs are not published, so no first-year total yet",
+      "checked": "2026-11-07"
     }
   ],
   "labs": [
