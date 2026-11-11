@@ -1,6 +1,6 @@
 {
   "buttondownUsername": "trtledger",
-  "updated": "2026-11-09",
+  "updated": "2026-11-11",
   "clinics": [
     {
       "id": "henry-meds",
@@ -710,25 +710,22 @@
       "id": "talon-wellness",
       "name": "Talon Wellness",
       "url": "https://www.talonwellness.com",
-      "sourceUrl": "https://docs.google.com/document/d/1LgKBKKZv6txO1-HHKZIKWMxQr58DwHmgSpRzAac_Gfg/mobilebasic",
-      "checked": "2026-11-06",
+      "sourceUrl": "https://www.talonwellness.com/trt-price-breakdown",
+      "checked": "2026-11-11",
       "verified": true,
-      "sourceType": "clinic-provided",
-      "sourceDate": "2026-11-06",
-      "reconfirmBy": "2027-02-04",
       "model": "Pay per vial, no membership",
       "monthly": null,
-      "monthlyLabel": "$61.47/mo avg",
+      "monthlyLabel": "$58.97/mo avg",
       "intakeFee": 0,
       "labsIncluded": false,
       "labFee": 198,
       "medsIncluded": false,
-      "clinicYear1Estimate": 737.6,
+      "clinicYear1Estimate": 707.6,
       "year1Breakdown": [
         "$320 medication (4 vials × $80)",
         "$198 labs (2 × $99)",
         "$150 consults (2 × $75)",
-        "$60 shipping (4 orders × $15)",
+        "$30 shipping (2 orders × $15; doses over 120 mg/week can order 2 vials at a time)",
         "$9.60 card fee (3% of medication)"
       ],
       "startCost": 271.4,
@@ -747,7 +744,7 @@
         "injection"
       ],
       "aiIncluded": null,
-      "hcg": "Not listed",
+      "hcg": "Offered; price not listed",
       "commitment": "No membership or subscription; pay per vial",
       "states": "All 50 states",
       "highlights": [
@@ -755,12 +752,14 @@
         "No membership or intake fee",
         "Starter injection supplies included",
         "Consult $75 and basic labs $99, each at the start and every 6 months",
-        "$15 shipping per order"
+        "$15 shipping per order ($30 overnight)",
+        "Publishes a full first-year price breakdown on its own site"
       ],
       "watchOuts": [
-        "Prices are from a pricing document Talon gave us (Nov 6, 2026), not from its website; its website shows the $99 lab panel and $15 shipping but not the vial or consult price",
         "Medication, labs, consults and shipping are paid separately; 3% card fee on medication and supplies",
-        "Extra syringes ($1 per IM set, $5 per 10 SQ) and other prescribed medications cost extra",
+        "Labs and consults only every 6 months; the $99 panel's tests aren't listed",
+        "At 100 mg/week, one vial per order (more shipping); over 120 mg/week, up to 2 vials per order",
+        "Extra syringes ($1 per IM set, $5 per 10 SQ), HCG, semaglutide and tirzepatide cost extra; prices not listed",
         "Modeled at 140 mg/week; the clinic's own totals run $640 (100 mg/week) to $887 (200 mg/week)",
         "Start: $75 consult + $99 labs + first $80 vial + $15 shipping + $2.40 card fee"
       ]
@@ -1038,5 +1037,14 @@
       "verified": true
     }
   ],
-  "recentChanges": []
+  "recentChanges": [
+    {
+      "date": "2026-11-11",
+      "name": "Talon Wellness",
+      "field": "clinicYear1Estimate",
+      "old": 737.6,
+      "new": 707.6,
+      "url": "https://www.talonwellness.com/trt-price-breakdown"
+    }
+  ]
 }
