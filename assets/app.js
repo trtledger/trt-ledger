@@ -192,7 +192,7 @@ $('alertForm').addEventListener('submit', e=>{
 
 // ---------- Am I overpaying? ----------
 // "No commitment listed" means the terms are unknown, so it doesn't count as no contract
-const NO_CONTRACT = /no commitments?(?! listed)|no subscription|no contract|cancel anytime/i;
+const NO_CONTRACT = /no commitments?(?! listed)|no (?:membership or )?subscriptions?(?! listed)|not a subscription|no contract|cancel anytime/i;
 const assumptions = () => ({medCost:+$('medCost').value||0, labCost:+$('labCost').value||0, labsPerYear:+$('labsPerYear').value||0});
 const onlyEnclo = c => c.forms.length===1 && c.forms[0]==='enclomiphene';
 const DEFAULT_HINT = "Include the membership, medication and supplies. Leave out one-time fees you've already paid.";
