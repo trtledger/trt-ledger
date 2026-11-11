@@ -814,6 +814,46 @@
         "Florida and Texas only",
         "Start: $90 first month + $81 baseline labs"
       ]
+    },
+    {
+      "id": "prescribedrx",
+      "name": "PrescribedRX",
+      "url": "https://prescribedrx.com/testosterone/",
+      "sourceUrl": "https://prescribedrx.com/plans/injectable-testosterone/",
+      "additionalSourceUrls": [
+        "https://prescribedrx.com/plans/health-assessment-trt/",
+        "https://prescribedrx.com/plans/trt-cream/"
+      ],
+      "checked": "2026-11-11",
+      "verified": true,
+      "model": "Billed every 3 months",
+      "monthly": 129,
+      "prepaid": 387,
+      "intakeFee": 0,
+      "labsIncluded": false,
+      "labFee": 276,
+      "medsIncluded": true,
+      "clinicYear1Estimate": null,
+      "forms": [
+        "injection",
+        "cream"
+      ],
+      "aiIncluded": null,
+      "hcg": "Not listed",
+      "commitment": "$387 every 3 months ($129/mo); cancel anytime before renewal, no membership or cancellation fee",
+      "states": "All except AL, AR, CT, GA, LA, MN, PA, RI",
+      "highlights": [
+        "$129/mo, billed $387 every 3 months, same price at every dose",
+        "Includes testosterone, syringes and supplies, provider follow-ups and free shipping",
+        "Injection or compounded cream, same price",
+        "Plan is only charged after a provider prescribes"
+      ],
+      "watchOuts": [
+        "Labs extra: $69 hormone panel to start (normally $119) and another $69 panel with each 3-month renewal (first year: 4 panels = $276)",
+        "Billed 3 months at a time",
+        "Injectable testosterone not available in AL, AR, CT, GA, LA, MN, PA or RI",
+        "Start: $69 panel, then $387 for the first 3 months once prescribed"
+      ]
     }
   ],
   "inPerson": [
@@ -1038,6 +1078,24 @@
       "url": "https://www.ryzehrt.com",
       "note": "Online, all 50 states. Men's HRT \"starting as low as $85/month\"; what that includes and lab costs are not published, so no first-year total yet",
       "checked": "2026-11-07"
+    },
+    {
+      "name": "Gatlan Health",
+      "url": "https://gatlan.com/mens-health-products/",
+      "note": "Testosterone \"as low as $125/mo\", but what that includes, lab costs and states aren't published",
+      "checked": "2026-11-11"
+    },
+    {
+      "name": "Thrivelab",
+      "url": "https://www.thrivelab.com",
+      "note": "Offers compounded TRT and takes some insurance; prices not published on its site",
+      "checked": "2026-11-11"
+    },
+    {
+      "name": "Taurus Medical",
+      "url": "https://www.taurusmeds.com",
+      "note": "Free testosterone test to start; TRT prices not published on its site",
+      "checked": "2026-11-11"
     }
   ],
   "labs": [
