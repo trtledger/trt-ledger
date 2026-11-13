@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Weekly TRT Ledger price checker.
+"""TRT Ledger price checker (runs daily).
 
 Reads data.json, re-reads every watched price from its source page, records changes,
 rebuilds data.js for the site, writes checker/last-report.md and (optionally) emails
@@ -190,7 +190,7 @@ def send_alert(changes, site_url, sponsor=None):
         return "skipped (no API key or no changes)"
     drops = [c for _, _, c in changes if c["old"] and c["new"] < c["old"]]
     subject = (f"TRT price drop: {drops[0]['name']} now {money(drops[0]['new'])}"
-               if len(drops) == 1 else f"{len(changes)} TRT price changes this week")
+               if len(drops) == 1 else f"{len(changes)} TRT price changes")
     body = "\n".join(
         [f"Here's what changed on [TRT Ledger]({site_url}) this week:", ""]
         + [f"- **{c['name']}** {label(c['field'])}: ~~{money(c['old'])}~~ **{money(c['new'])}** "

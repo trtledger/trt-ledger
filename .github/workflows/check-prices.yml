@@ -1,8 +1,8 @@
-name: Weekly price check
+name: Daily price check
 
 on:
   schedule:
-    - cron: "0 13 * * 1"   # Mondays 13:00 UTC (8–9am US Eastern)
+    - cron: "0 13 * * *"   # every day 13:00 UTC (8–9am US Eastern)
   workflow_dispatch:         # "Run workflow" button for a manual check
 
 permissions:
@@ -48,6 +48,6 @@ jobs:
           git config user.name "trt-ledger-bot"
           git config user.email "trt-ledger-bot@users.noreply.github.com"
           git add data.json data.js checker/last-report.md trt online for-clinics lab-tests pipeline/lastmod.json sitemap.xml robots.txt index.html
-          git diff --cached --quiet || git commit -m "Weekly price check $(date -u +%F)"
+          git diff --cached --quiet || git commit -m "Daily price check $(date -u +%F)"
           git pull --rebase --autostash
           git push
