@@ -853,6 +853,49 @@
         "Injectable testosterone not available in AL, AR, CT, GA, LA, MN, PA or RI",
         "Start: $69 panel, then $387 for the first 3 months once prescribed"
       ]
+    },
+    {
+      "id": "alpha-md",
+      "name": "Alpha MD",
+      "url": "https://www.alphamd.net",
+      "sourceUrl": "https://www.alphamd.net/",
+      "checked": "2026-11-13",
+      "verified": true,
+      "model": "Prepaid plan",
+      "monthly": 98,
+      "prepaid": 1176,
+      "intakeFee": null,
+      "labsIncluded": null,
+      "labFee": null,
+      "medsIncluded": true,
+      "clinicYear1Estimate": null,
+      "forms": [
+        "injection"
+      ],
+      "aiIncluded": null,
+      "hcg": "Offered as an add-on for TRT patients; price not listed",
+      "commitment": "$98/mo on a 12-month commitment, billed annually ($1,176); $109/mo on a 6-month commitment; $129/mo on the 'monthly' plan, which has a 3-month commitment",
+      "states": "Not listed",
+      "highlights": [
+        "Medication and supplies included, shipped to you",
+        "First labs covered",
+        "Consults with a licensed provider",
+        "20% off for veterans, active military and first responders ($78.40/mo on the annual plan)"
+      ],
+      "watchOuts": [
+        "The $98/mo price is billed annually: $1,176 upfront",
+        "The 'monthly' plan still has a 3-month commitment",
+        "Prices carry a footnote: 'Pricing may adjust depending on your goals & dosage'",
+        "A consultation fee exists (the site advertises discounts on it) but the amount isn't published, so it isn't counted",
+        "Cost of labs after the first set isn't stated",
+        "States served not listed"
+      ],
+      "watch": [
+        {
+          "field": "monthly",
+          "pattern": "12-month commitment \\$ ?(\\d+) ?/month"
+        }
+      ]
     }
   ],
   "inPerson": [
@@ -1095,6 +1138,24 @@
       "url": "https://www.taurusmeds.com",
       "note": "Free testosterone test to start; TRT prices not published on its site",
       "checked": "2026-11-11"
+    },
+    {
+      "name": "Opt Health",
+      "url": "https://www.getopt.com",
+      "note": "Publishes its membership ($245/month plus a $195 one-time intake and lab fee for the plan that offers TRT) but doesn't say whether the testosterone itself is included or what it costs",
+      "checked": "2026-11-13"
+    },
+    {
+      "name": "1st Optimal",
+      "url": "https://1stoptimal.com",
+      "note": "Membership-based telehealth; no testosterone therapy prices on its own pages",
+      "checked": "2026-11-13"
+    },
+    {
+      "name": "Dynamis (formerly Elite Health Online)",
+      "url": "https://dynamisonline.com",
+      "note": "Telehealth in all 50 states; says costs are 'specific to your treatment plan' and publishes no prices",
+      "checked": "2026-11-13"
     }
   ],
   "labs": [
