@@ -31,6 +31,7 @@ jobs:
           BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
           HC_PING_URL: ${{ secrets.HC_PING_URL }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          GOATCOUNTER_API_TOKEN: ${{ secrets.GOATCOUNTER_API_TOKEN }}
           CF_ACCOUNT_ID: ${{ vars.CF_ACCOUNT_ID }}
           CF_SITE_TAG: ${{ vars.CF_SITE_TAG }}
         run: python3 ops/briefing.py

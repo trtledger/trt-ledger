@@ -7,6 +7,7 @@ Env (all optional except the email ones; a missing source shows as "not connecte
   RESEND_API_KEY, BRIEFING_TO, BRIEFING_FROM   email delivery (Resend, scheduled send)
   GITHUB_TOKEN, GITHUB_REPOSITORY              workflow + Pages certificate status
   BUTTONDOWN_API_KEY                           subscriber count
+  GOATCOUNTER_API_TOKEN                        clicks to clinic sites (emailed only, never archived: this repo is public)
   HC_PING_URL                                  healthchecks.io dead-man's switch
   --dry-run                                    print the briefing, send nothing
 """
@@ -113,6 +114,7 @@ def collect():
         f["subscribers"] = f"unknown ({type(e).__name__})"
     f["search"] = "not connected (Search Console API)"
     f["traffic"] = cloudflare_visits(now.date())
+    f["clicks"] = clinic_clicks()
     f["drafts"] = post_drafts(data, now.date())
     if f["drafts"].startswith("1."):
         decisions.append("Post drafts are ready below — click to post the ones you approve.")
@@ -144,6 +146,46 @@ def cloudflare_visits(today):
         return f"error (Cloudflare HTTP {e.code}: check CF_API_TOKEN has Account Analytics: Read)"
     except Exception as e:
         return f"unknown ({type(e).__name__})"
+
+
+CLICKS_PUBLIC = "in the emailed briefing only (per-clinic numbers are private)"
+
+
+def clinic_clicks():
+    """Clicks on clinic "Visit" links, last 7 days, from GoatCounter events out/<clinic-id>.
+
+    Per-clinic numbers are private (a clinic's numbers are shared with that clinic only), so main() puts
+    this text in the email and writes CLICKS_PUBLIC into the archived copy in this public repo.
+    """
+    from urllib.parse import urlencode
+    token = "".join(ch for ch in os.environ.get("GOATCOUNTER_API_TOKEN", "") if ch.isascii() and not ch.isspace())
+    if not token:
+        return "not connected (GoatCounter: add the GOATCOUNTER_API_TOKEN secret to this repo)"
+    end = dt.datetime.now(dt.timezone.utc).replace(minute=0, second=0, microsecond=0)
+    start = end - dt.timedelta(days=7)
+    clicks, seen = {}, []
+    try:
+        for _ in range(20):   # 100 paths a page; far more than the site has
+            q = [("start", start.strftime("%Y-%m-%dT%H:00:00Z")), ("end", end.strftime("%Y-%m-%dT%H:00:00Z")),
+                 ("limit", "100")] + [("exclude_paths", str(i)) for i in seen]
+            res = http(f"https://trtledger.goatcounter.com/api/v0/stats/hits?{urlencode(q)}",
+                       {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}, timeout=30)[1]
+            hits = res.get("hits") or []
+            for h in hits:
+                seen.append(h["path_id"])
+                path = (h.get("path") or "").lstrip("/")
+                if path.startswith("out/"):
+                    clicks[path[4:]] = clicks.get(path[4:], 0) + int(h.get("count") or 0)
+            if not res.get("more") or not hits:
+                break
+    except urllib.error.HTTPError as e:
+        return f"error (GoatCounter HTTP {e.code}: check GOATCOUNTER_API_TOKEN)"
+    except Exception as e:
+        return f"unknown ({type(e).__name__})"
+    if not clicks:
+        return "**0** (counting started Nov 13, 2026)"
+    top = sorted(clicks.items(), key=lambda kv: (-kv[1], kv[0]))
+    return f"**{sum(clicks.values())}** · " + ", ".join(f"{k} {v}" for k, v in top)
 
 
 def post_drafts(data, today):
@@ -199,12 +241,13 @@ def main():
             return
         today = dt.datetime.now(ET).date()
         (ROOT / "ops/briefings").mkdir(exist_ok=True)
-        (ROOT / f"ops/briefings/{today}.md").write_text(text)   # archive; the daily commit also keeps cron alive
+        public = Template((ROOT / "ops/briefing_template.md").read_text()).safe_substitute({**f, "clicks": CLICKS_PUBLIC})
+        (ROOT / f"ops/briefings/{today}.md").write_text(public)   # archive (public repo: no per-clinic clicks); the daily commit also keeps cron alive
         when = dt.datetime.combine(today, dt.time(8, 0), ET)   # 8:00 AM Eastern (EST now, EDT in summer)
         if os.environ.get("RESEND_API_KEY") and os.environ.get("BRIEFING_TO"):
             print("Resend:", send_at(text, f"TRT Ledger briefing — {f['verdict']}", when))
         else:
-            print("Email not connected yet (RESEND_API_KEY / BRIEFING_TO); briefing archived only.\n\n" + text)
+            print("Email not connected yet (RESEND_API_KEY / BRIEFING_TO); briefing archived only.\n\n" + public)
         ping()   # dead-man's switch: healthchecks.io alerts you if this ping doesn't arrive
     except Exception:
         ping("/fail")

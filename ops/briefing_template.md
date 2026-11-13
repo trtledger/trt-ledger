@@ -25,6 +25,7 @@ $jobs
 ## Audience (Marketing agent)
 - Email alert subscribers: **$subscribers**
 - Visitors (last 7 days): $traffic
+- Clicks to clinic sites (last 7 days): $clicks
 - Search (Google, last 7 days): $search
 
 ## Post drafts — click to post the ones you approve
