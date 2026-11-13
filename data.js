@@ -1,14 +1,14 @@
 // Generated from data.json by checker/check_prices.py — edit data.json, not this file.
 window.TRT_DATA = {
   "buttondownUsername": "trtledger",
-  "updated": "2026-11-11",
+  "updated": "2026-11-13",
   "clinics": [
     {
       "id": "henry-meds",
       "name": "Henry Meds",
       "url": "https://henrymeds.com",
       "sourceUrl": "https://henrymeds.com/terms-of-service/programs",
-      "checked": "2026-11-09",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Flat monthly",
       "monthly": 129,
@@ -52,7 +52,7 @@ window.TRT_DATA = {
       "name": "TRT Nation",
       "url": "https://trtnation.com",
       "sourceUrl": "https://trtnation.com",
-      "checked": "2026-11-09",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Flat monthly",
       "monthly": 99,
@@ -90,7 +90,7 @@ window.TRT_DATA = {
       "name": "Defy Medical",
       "url": "https://www.defymedical.com",
       "sourceUrl": "https://www.defymedical.com/faq/how-much-does-trt-cost-with-defy-medical/",
-      "checked": "2026-11-09",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Pay per service",
       "monthly": null,
@@ -131,7 +131,7 @@ window.TRT_DATA = {
       "name": "Fountain TRT",
       "url": "https://www.fountaintrt.com",
       "sourceUrl": "https://www.fountaintrt.com",
-      "checked": "2026-11-09",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Flat monthly",
       "monthly": 199,
@@ -169,7 +169,7 @@ window.TRT_DATA = {
       "name": "Hone Health",
       "url": "https://honehealth.com",
       "sourceUrl": "https://honehealth.com",
-      "checked": "2026-11-09",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Membership + meds",
       "monthly": 155,
@@ -208,7 +208,7 @@ window.TRT_DATA = {
       "name": "Marek Health",
       "url": "https://marekhealth.com",
       "sourceUrl": "https://marekhealth.com",
-      "checked": "2026-11-09",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Pay as you go",
       "monthly": null,
@@ -253,7 +253,7 @@ window.TRT_DATA = {
       "name": "PeterMD",
       "url": "https://www.getpetermd.com",
       "sourceUrl": "https://www.getpetermd.com/mens-trt/",
-      "checked": "2026-11-09",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Prepaid plan",
       "monthly": 79,
@@ -298,7 +298,7 @@ window.TRT_DATA = {
       "name": "Fridays",
       "url": "https://www.joinfridays.com",
       "sourceUrl": "https://www.joinfridays.com/testosterone",
-      "checked": "2026-11-09",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Flat monthly",
       "monthly": 129,
@@ -312,21 +312,21 @@ window.TRT_DATA = {
         "oral",
         "enclomiphene"
       ],
-      "aiIncluded": true,
+      "aiIncluded": null,
       "hcg": "Not listed",
       "commitment": "No commitments, cancel anytime",
       "states": "Not listed",
       "highlights": [
         "Injectable or oral testosterone from $129/mo",
         "Free baseline labs at Quest or Labcorp",
-        "Anastrozole included when clinically appropriate",
+        "Anastrozole is described on the page as co-administered 'when necessary'; the page doesn't say it's included in the price",
         "Free shipping"
       ],
       "watchOuts": [
         "Follow-up labs at 1 and 3 months, then quarterly — cost not stated",
-        "Outside lab results not accepted",
         "\"From\" price; unclear if meds are included",
-        "Intake fee not confirmed; no intake amount is included in this estimate"
+        "Intake fee not confirmed; no intake amount is included in this estimate",
+        "Page doesn't say whether anastrozole is included in the price"
       ],
       "watch": [
         {
@@ -341,7 +341,7 @@ window.TRT_DATA = {
       "name": "Nuform Health",
       "url": "https://nuformhealth.com",
       "sourceUrl": "https://www.nuformhealth.com/trt",
-      "checked": "2026-11-09",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Prepaid kits",
       "monthly": 50,
@@ -433,7 +433,7 @@ window.TRT_DATA = {
       "name": "Rex MD",
       "url": "https://www.rexmd.com",
       "sourceUrl": "https://rexmd.com/our-medications/testosterone-program/",
-      "checked": "2026-11-09",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Flat monthly",
       "monthly": 250,
@@ -474,12 +474,12 @@ window.TRT_DATA = {
       "name": "Male Excel",
       "url": "https://maleexcel.com",
       "sourceUrl": "https://maleexcel.com/treatments/hrt-costs/",
-      "checked": "2026-11-03",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Membership + meds",
-      "monthly": 219,
+      "monthly": 161.5,
       "intakeFee": 99,
-      "labsIncluded": null,
+      "labsIncluded": true,
       "labFee": null,
       "medsIncluded": true,
       "clinicYear1Estimate": null,
@@ -490,35 +490,34 @@ window.TRT_DATA = {
       ],
       "aiIncluded": null,
       "hcg": "Not mentioned",
-      "commitment": "No Contract, Cancel Anytime; billed every other month",
-      "states": "Not listed",
+      "commitment": "Cancel anytime; the required membership is $99/mo paid monthly or $79/mo on an annual plan paid upfront",
+      "states": "All except AK, AR, CT, HI, ID, LA, MS, NH, RI",
       "highlights": [
-        "Injectable testosterone from $120/mo plus required $99/mo medical membership (= $219/mo)",
-        "Topical Lipoderm cream with thyroid: starting at $132/month",
-        "Oral Triclozene (clomiphene with thyroid): $95 to $120/month",
-        "FSA/HSA eligible"
+        "Injectable testosterone from $62.50/mo plus required Proactive Healthcare Membership $99/mo paid monthly (= $161.50/mo); $79/mo if the annual plan is paid upfront",
+        "$99 one-time at-home hormone test, lab analysis and online consultation",
+        "Topical testosterone from $90/month; enclomiphene from $75/month",
+        "Comprehensive lab tests every 6 months and symptom assessments every 60 days are part of the membership; FSA/HSA eligible"
       ],
       "watchOuts": [
-        "The required Medical Membership adds $99/month, so injectable TRT is about $219/month or more",
-        "Shipping and handling is extra",
-        "The headline 'as low as $95 a month' is for oral clomiphene (Triclozene), not testosterone",
-        "Price varies with dose",
-        "Lab costs are not shown on the pricing page"
+        "The required membership adds $99/month ($79/month only if the annual plan is paid upfront)",
+        "Injection kit is billed separately",
+        "Medication price varies with dose; 'from' prices shown",
+        "$99 one-time test and consultation is charged before treatment is prescribed"
       ],
       "watch": [
         {
           "field": "medPrice",
-          "pattern": "\\$(\\d+)/month\\*"
+          "pattern": "Testosterone cypionate injections From \\$([\\d.]+) /month"
         }
       ],
-      "medPrice": 120
+      "medPrice": 62.5
     },
     {
       "id": "viking-alternative-medicine",
       "name": "Viking Alternative Medicine",
       "url": "https://vikingalternative.com",
       "sourceUrl": "https://vikingalternative.com/pricing/",
-      "checked": "2026-11-09",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Flat monthly",
       "monthly": 100,
@@ -562,7 +561,7 @@ window.TRT_DATA = {
       "name": "BodyLogicMD",
       "url": "https://www.bodylogicmd.com",
       "sourceUrl": "https://www.bodylogicmd.com/pricing",
-      "checked": "2026-11-09",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Membership + meds",
       "monthly": 79,
@@ -600,7 +599,7 @@ window.TRT_DATA = {
       "name": "Gameday Men's Health (telehealth)",
       "url": "https://gamedaymenshealth.com",
       "sourceUrl": "https://gamedaymenshealth.com/service/testosterone-replacement-therapy",
-      "checked": "2026-11-09",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Flat monthly",
       "monthly": 199,
@@ -643,7 +642,7 @@ window.TRT_DATA = {
       "name": "TRT Kingdom",
       "url": "https://trtkingdom.com",
       "sourceUrl": "https://trtkingdom.com/products/hormone-therapy-testosterone-cypionate-therapy",
-      "checked": "2026-11-09",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Tiered by plan length",
       "monthly": 79,
@@ -712,7 +711,7 @@ window.TRT_DATA = {
       "name": "Talon Wellness",
       "url": "https://www.talonwellness.com",
       "sourceUrl": "https://www.talonwellness.com/trt-price-breakdown",
-      "checked": "2026-11-11",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Pay per vial, no membership",
       "monthly": null,
@@ -770,7 +769,7 @@ window.TRT_DATA = {
       "name": "Andronyx",
       "url": "https://andronyx.care",
       "sourceUrl": "https://andronyx.care",
-      "checked": "2026-11-11",
+      "checked": "2026-11-13",
       "verified": true,
       "sourceType": "clinic-provided",
       "sourceDate": "2026-11-06",
@@ -825,7 +824,7 @@ window.TRT_DATA = {
         "https://prescribedrx.com/plans/health-assessment-trt/",
         "https://prescribedrx.com/plans/trt-cream/"
       ],
-      "checked": "2026-11-11",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Billed every 3 months",
       "monthly": 129,
@@ -854,6 +853,49 @@ window.TRT_DATA = {
         "Billed 3 months at a time",
         "Injectable testosterone not available in AL, AR, CT, GA, LA, MN, PA or RI",
         "Start: $69 panel, then $387 for the first 3 months once prescribed"
+      ]
+    },
+    {
+      "id": "alpha-md",
+      "name": "Alpha MD",
+      "url": "https://www.alphamd.net",
+      "sourceUrl": "https://www.alphamd.net/",
+      "checked": "2026-11-13",
+      "verified": true,
+      "model": "Prepaid plan",
+      "monthly": 98,
+      "prepaid": 1176,
+      "intakeFee": null,
+      "labsIncluded": null,
+      "labFee": null,
+      "medsIncluded": true,
+      "clinicYear1Estimate": null,
+      "forms": [
+        "injection"
+      ],
+      "aiIncluded": null,
+      "hcg": "Offered as an add-on for TRT patients; price not listed",
+      "commitment": "$98/mo on a 12-month commitment, billed annually ($1,176); $109/mo on a 6-month commitment; $129/mo on the 'monthly' plan, which has a 3-month commitment",
+      "states": "Not listed",
+      "highlights": [
+        "Medication and supplies included, shipped to you",
+        "First labs covered",
+        "Consults with a licensed provider",
+        "20% off for veterans, active military and first responders ($78.40/mo on the annual plan)"
+      ],
+      "watchOuts": [
+        "The $98/mo price is billed annually: $1,176 upfront",
+        "The 'monthly' plan still has a 3-month commitment",
+        "Prices carry a footnote: 'Pricing may adjust depending on your goals & dosage'",
+        "A consultation fee exists (the site advertises discounts on it) but the amount isn't published, so it isn't counted",
+        "Cost of labs after the first set isn't stated",
+        "States served not listed"
+      ],
+      "watch": [
+        {
+          "field": "monthly",
+          "pattern": "12-month commitment \\$ ?(\\d+) ?/month"
+        }
       ]
     }
   ],
@@ -1018,19 +1060,19 @@ window.TRT_DATA = {
       "name": "Evolve Telemed",
       "url": "https://evolvetelemed.com",
       "note": "Free consult; pricing only after you talk to an intake coordinator",
-      "checked": "2026-11-02"
+      "checked": "2026-11-13"
     },
     {
       "name": "Ways2Well",
       "url": "https://ways2well.com",
       "note": "Care-plan tiers include labs; no prices on site. Not in MO, NJ, NY, RI",
-      "checked": "2026-11-02"
+      "checked": "2026-11-13"
     },
     {
       "name": "Keeps TRT (formerly Titan)",
       "url": "https://jointitan.com",
       "note": "$49 to start (labs + consult); monthly price only shown inside its sign-up quiz",
-      "checked": "2026-11-03"
+      "checked": "2026-11-13"
     },
     {
       "name": "Ehormones MD",
@@ -1097,6 +1139,24 @@ window.TRT_DATA = {
       "url": "https://www.taurusmeds.com",
       "note": "Free testosterone test to start; TRT prices not published on its site",
       "checked": "2026-11-11"
+    },
+    {
+      "name": "Opt Health",
+      "url": "https://www.getopt.com",
+      "note": "Publishes its membership ($245/month plus a $195 one-time intake and lab fee for the plan that offers TRT) but doesn't say whether the testosterone itself is included or what it costs",
+      "checked": "2026-11-13"
+    },
+    {
+      "name": "1st Optimal",
+      "url": "https://1stoptimal.com",
+      "note": "Membership-based telehealth; no testosterone therapy prices on its own pages",
+      "checked": "2026-11-13"
+    },
+    {
+      "name": "Dynamis (formerly Elite Health Online)",
+      "url": "https://dynamisonline.com",
+      "note": "Telehealth in all 50 states; says costs are 'specific to your treatment plan' and publishes no prices",
+      "checked": "2026-11-13"
     }
   ],
   "labs": [
@@ -1107,7 +1167,7 @@ window.TRT_DATA = {
       "price": 29.95,
       "fees": 12.95,
       "sourceUrl": "https://www.findlabtest.com/lab-test/hormone-testing/testosterone-total-males-adult-ia-quest-result-code-55036300",
-      "checked": "2026-11-09",
+      "checked": "2026-11-13",
       "verified": false,
       "watch": [
         {
@@ -1123,7 +1183,7 @@ window.TRT_DATA = {
       "price": 59.0,
       "fees": 6.0,
       "sourceUrl": "https://www.walkinlab.com/products/view/testosterone-total-blood-test-male-only",
-      "checked": "2026-11-04",
+      "checked": "2026-11-13",
       "verified": true
     },
     {
@@ -1133,7 +1193,7 @@ window.TRT_DATA = {
       "price": 139.0,
       "fees": 6.0,
       "sourceUrl": "https://www.walkinlab.com/products/view/testosterone-free-bioavailable-total-blood-test-lc-ms-ms",
-      "checked": "2026-11-04",
+      "checked": "2026-11-13",
       "verified": true
     },
     {
@@ -1143,7 +1203,7 @@ window.TRT_DATA = {
       "price": 139.0,
       "fees": 6.0,
       "sourceUrl": "https://www.walkinlab.com/products/view/testosterone-free-weakly-bound-blood-test",
-      "checked": "2026-11-04",
+      "checked": "2026-11-13",
       "verified": true
     }
   ],
