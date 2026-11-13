@@ -9,23 +9,23 @@
   },
   "https://trtledger.com/lab-tests/": {
     "lastmod": "2026-11-13",
-    "sha256": "1214aa12c0aaf7845f80917bf19603d3e85cd31f226b204c1e0ba9c924cdf4f0"
+    "sha256": "11de165403676b5f0bee5dd0618371a8f3819ea8dea71fb22494a00896b21dd5"
   },
   "https://trtledger.com/online/": {
     "lastmod": "2026-11-13",
-    "sha256": "e6ea18418d46762681daf9977d9e67bd016ff7145cd574d5e4df84f37b19829d"
+    "sha256": "395c71a36561ab557f6cae1413c7989d2bc174a255978d68d64d42a980c72cd7"
   },
   "https://trtledger.com/online/andronyx/": {
     "lastmod": "2026-11-13",
-    "sha256": "9b2095657aa045f3668010f26e3b75ed808edae2c94459f7dde1147012edd2cb"
+    "sha256": "c2c3f7260ee11dba8d85f7a8a9de92bd66b7ee5fb1b533ed528c32958ac89a98"
   },
   "https://trtledger.com/online/bodylogicmd/": {
     "lastmod": "2026-11-13",
-    "sha256": "a2d9821e3fdc03177ac22b2ba109671fc1ea435e7651b12a9687ea3e76b85bc5"
+    "sha256": "e060d0ac036df553a3f53ccfc70cb810d9260b618269cca4d537da1c99fe6c9c"
   },
   "https://trtledger.com/online/defy-medical/": {
     "lastmod": "2026-11-13",
-    "sha256": "bf7dd921a53c2db26defcd6b2b62a669d1eb2af9030449778c511838cd156f14"
+    "sha256": "c3200123c9a4f7c7b69b8e606a9bff8e4789e49aaf479323dd11a10a5c5dd827"
   },
   "https://trtledger.com/online/feel30/": {
     "lastmod": "2026-11-13",
@@ -33,19 +33,19 @@
   },
   "https://trtledger.com/online/fountain-trt/": {
     "lastmod": "2026-11-13",
-    "sha256": "08f4cede126e238d31d55500ef5f3bd758b074bcb179cc4ad899873d7525fd7a"
+    "sha256": "d5add14c8d462169397abe2a9b4fd97694e99992bcec7acd5ace5964f38c120e"
   },
   "https://trtledger.com/online/fridays/": {
     "lastmod": "2026-11-13",
-    "sha256": "16e6b592d03f9e6df1eecedeb1fdecf679a2bb0539b3c458224c46ad61244a0d"
+    "sha256": "48394d7bb7a239e05069bcce34b544373f8cc750f9acc19ea7397b1d12813106"
   },
   "https://trtledger.com/online/gameday-telehealth/": {
     "lastmod": "2026-11-13",
-    "sha256": "fd143712c632b290140ecfc3fe38b8b30aca3e671810ddb5f18ab87a2378d37c"
+    "sha256": "3a286b0e6a74192fedfba58c69c09ef0cd0f97b33af89bf3388923188a699825"
   },
   "https://trtledger.com/online/henry-meds/": {
     "lastmod": "2026-11-13",
-    "sha256": "dc5b5bf692792317adcfd36c167a09a2fdccaf24297e70d93a98b117795f156a"
+    "sha256": "e58d51eba318f45fa808668be6746d03b5e087c18d327959821f174d8c5faca1"
   },
   "https://trtledger.com/online/hone-health/": {
     "lastmod": "2026-11-13",
@@ -53,15 +53,15 @@
   },
   "https://trtledger.com/online/male-excel/": {
     "lastmod": "2026-11-13",
-    "sha256": "05b1cc899f3f36211b37ed2a0abfe8bdbe623388c855ef1bdfe1ce3efd27838d"
+    "sha256": "5faad03d5fac45e4165d089ebdeb4178d00371dd077c9b8282702ecc4622f63d"
   },
   "https://trtledger.com/online/marek-health/": {
     "lastmod": "2026-11-13",
-    "sha256": "09abeaaa73a3661c1f7771281f79561bc8e71aed8cfd1d72c464207e0afcf0ad"
+    "sha256": "989e8821b54304a8a395d2cfcca558b7f34c84bae672eb28efdd02ce68479c9b"
   },
   "https://trtledger.com/online/nuform-health/": {
     "lastmod": "2026-11-13",
-    "sha256": "a87a796ab38d8958843c00c976f1a8a50d5efae3d5bafd4d69041d636d48f8b1"
+    "sha256": "a9480925dc7ae75527a8e3c40f179c3aa0ea132dfc95c615eecbae77cfc4cb1b"
   },
   "https://trtledger.com/online/peter-md/": {
     "lastmod": "2026-11-13",
@@ -69,11 +69,11 @@
   },
   "https://trtledger.com/online/prescribedrx/": {
     "lastmod": "2026-11-13",
-    "sha256": "66bb017e56e03384616a2fb1999694952e9875a4e3c950800e9cb69a2181cc27"
+    "sha256": "cfa7e3a7ae720431679a354f9023cfcc8cbb80ea293be3a8a1aaa4b34093f070"
   },
   "https://trtledger.com/online/rex-md/": {
     "lastmod": "2026-11-13",
-    "sha256": "e9f974af3736fa5a1f79be8c9190c1a1a1c44a2293e663580d633f76cc8c7f5f"
+    "sha256": "a3eb0a74155a649e9b91ae96a4b12cc2babef9cd89d109a29f992631f3c4f99a"
   },
   "https://trtledger.com/online/somira-health/": {
     "lastmod": "2026-11-13",
@@ -81,11 +81,11 @@
   },
   "https://trtledger.com/online/talon-wellness/": {
     "lastmod": "2026-11-13",
-    "sha256": "ac6c500bc82f420839d2709c0ebfb6d4b5b51e23c5fb9fbb333a0b9ae2caddf3"
+    "sha256": "8c7ae6490127aeaf75350f4e320811a0f13ae27b800e087a50fd67c7d798cb8f"
   },
   "https://trtledger.com/online/trt-kingdom/": {
     "lastmod": "2026-11-13",
-    "sha256": "b030db5fa404a6abec412c8b0a51cf3c84940bb8f6912c0a5001973a6b610169"
+    "sha256": "710de1557c1a6c739a3c2c7f1ac456ff5f9e55d9e8b6c5699826d0c2ce5bd8d1"
   },
   "https://trtledger.com/online/trt-nation/": {
     "lastmod": "2026-11-13",
@@ -93,7 +93,7 @@
   },
   "https://trtledger.com/online/viking-alternative-medicine/": {
     "lastmod": "2026-11-13",
-    "sha256": "a4ad3f94e0b8e454e31d6a4308c06a7a8aaf4316afdf27b96a515c8deeb5a3dc"
+    "sha256": "439a5c565bd2b200081bfb025f51706efdba8967f95476d8d57880d651c28f1b"
   },
   "https://trtledger.com/trt/": {
     "lastmod": "2026-11-13",
@@ -101,7 +101,7 @@
   },
   "https://trtledger.com/trt/alabama/": {
     "lastmod": "2026-11-13",
-    "sha256": "1dbb6a44a61a14c0f62cf3bfa43981e48a85be6065b3d515ef45b2fb40f2c28b"
+    "sha256": "1bbac40da56c3df9a1301d61d07234470e2346ae2bde35d313964c5af56b8185"
   },
   "https://trtledger.com/trt/alabama/birmingham/": {
     "lastmod": "2026-11-13",
@@ -133,7 +133,7 @@
   },
   "https://trtledger.com/trt/alaska/": {
     "lastmod": "2026-11-13",
-    "sha256": "ca6a22d1f8beda6027cfa243828e009748c3064f88e254e4dcd10b630266a894"
+    "sha256": "1cf41a5584876c8391e17d3fe112e5a574a36e26c39548109f679f7a2f4b46b0"
   },
   "https://trtledger.com/trt/alaska/anchorage/": {
     "lastmod": "2026-11-13",
@@ -141,7 +141,7 @@
   },
   "https://trtledger.com/trt/arizona/": {
     "lastmod": "2026-11-13",
-    "sha256": "cff0cf1692c2cb9ed4db89e2bebc4cc595048ac1bd292146dda38b9c80fddcb6"
+    "sha256": "e86cca978045e9294ff32d6aad527a45c0865e0bc5cda029298e1149907a761f"
   },
   "https://trtledger.com/trt/arizona/chandler/": {
     "lastmod": "2026-11-13",
@@ -193,7 +193,7 @@
   },
   "https://trtledger.com/trt/arkansas/": {
     "lastmod": "2026-11-13",
-    "sha256": "fe8346c2957eec5e3b7feb4cf4d692702a953800341bcd82cf49212170f55187"
+    "sha256": "28bb0c18c43bd228cee8d42124aa2c42b275e73e626c94c98b6f1a9f7bddcc7f"
   },
   "https://trtledger.com/trt/arkansas/bentonville/": {
     "lastmod": "2026-11-13",
@@ -217,7 +217,7 @@
   },
   "https://trtledger.com/trt/california/": {
     "lastmod": "2026-11-13",
-    "sha256": "a55f51dce8e1ee477fc33ddb03bba097377f5defb1b55d44d0d5350a5a24fed4"
+    "sha256": "408e7825c4af20eae5e69983ca723a4571cea0d98683f8b92f11dea4345c03d7"
   },
   "https://trtledger.com/trt/california/anaheim/": {
     "lastmod": "2026-11-13",
@@ -549,7 +549,7 @@
   },
   "https://trtledger.com/trt/colorado/": {
     "lastmod": "2026-11-13",
-    "sha256": "0b66d6d2f21b5bb55752e6c3f0df97fd658249d4ecbe8321e8d296d1d1c22f79"
+    "sha256": "ab87037820b68afcc4e4360aa377353d514feb1fb8b4dc7da73864ee47a50175"
   },
   "https://trtledger.com/trt/colorado/aurora/": {
     "lastmod": "2026-11-13",
@@ -609,7 +609,7 @@
   },
   "https://trtledger.com/trt/connecticut/": {
     "lastmod": "2026-11-13",
-    "sha256": "ab4b0df8f33ff28ca8d15ca2c9b4b9d7c24ae91fd37d484ec2544291e4978be3"
+    "sha256": "d18197bb7e1571c7cd7ee530e9137f9130403535e5c2e1dd5c3730e8854b51fd"
   },
   "https://trtledger.com/trt/connecticut/danbury/": {
     "lastmod": "2026-11-13",
@@ -665,7 +665,7 @@
   },
   "https://trtledger.com/trt/delaware/": {
     "lastmod": "2026-11-13",
-    "sha256": "d79b94426a6f2aeb29ef8d7130e336ec86261f7fed252ec4ca3e2269e402d04c"
+    "sha256": "f6180c5b670a584cc55414de1cd8f8c3749eaa65ba3e5011b2b2e0fd5ddc7e9e"
   },
   "https://trtledger.com/trt/delaware/newark/": {
     "lastmod": "2026-11-13",
@@ -677,11 +677,11 @@
   },
   "https://trtledger.com/trt/district-of-columbia/": {
     "lastmod": "2026-11-13",
-    "sha256": "6fd9622a11c04421fedef9d5b9884779da19ffd7ff5127837de0f5ad89ca6440"
+    "sha256": "7426f6ed571b430bf0d72bf2b4a644150d3db159619f33ad1ece20f04fa83ab3"
   },
   "https://trtledger.com/trt/florida/": {
     "lastmod": "2026-11-13",
-    "sha256": "cf0bba090026c52bef06d2a4ec8a66b7e2aadffb317f90a7837777884087c454"
+    "sha256": "2cf104a4eccacd588d90de47c88c586ffc707b1c9b7dcbc1be8cb2fe920c44fe"
   },
   "https://trtledger.com/trt/florida/aventura/": {
     "lastmod": "2026-11-13",
@@ -897,7 +897,7 @@
   },
   "https://trtledger.com/trt/georgia/": {
     "lastmod": "2026-11-13",
-    "sha256": "e1134cf903e23a5f39de4bfec855ad3dd52ec833876c3d3a1bfd51cb6bae7638"
+    "sha256": "3d2528b47dc0afad701bbae14cefead72bb2e51e312453068faf81cadb93300c"
   },
   "https://trtledger.com/trt/georgia/alpharetta/": {
     "lastmod": "2026-11-13",
@@ -977,7 +977,7 @@
   },
   "https://trtledger.com/trt/hawaii/": {
     "lastmod": "2026-11-13",
-    "sha256": "c0d485fc4c3298561f25f61da76232f4faa2979a696836fc5340330471fe50cc"
+    "sha256": "2b2c628cd3729010538b6574b21ccb3a387de0e694a7f40f8dbf8abda351683c"
   },
   "https://trtledger.com/trt/hawaii/honolulu/": {
     "lastmod": "2026-11-13",
@@ -993,7 +993,7 @@
   },
   "https://trtledger.com/trt/idaho/": {
     "lastmod": "2026-11-13",
-    "sha256": "bfa7d7de93c5e013f211cb31148e3182c17caffcdc371a77846efb01b8034bfc"
+    "sha256": "09121248490469ee643a361497acc04794a525d7d8ce7445021f27f921d8dae7"
   },
   "https://trtledger.com/trt/idaho/boise/": {
     "lastmod": "2026-11-13",
@@ -1013,7 +1013,7 @@
   },
   "https://trtledger.com/trt/illinois/": {
     "lastmod": "2026-11-13",
-    "sha256": "33b954df4c3dc71cfe21a68d681899739066439109d8f28b20fff2ccd45ff387"
+    "sha256": "2d42b125ac32adda6c7b6fc974105d0dfeac4a40d1fb98fe8fa9c956d893614e"
   },
   "https://trtledger.com/trt/illinois/burr-ridge/": {
     "lastmod": "2026-11-13",
@@ -1081,7 +1081,7 @@
   },
   "https://trtledger.com/trt/indiana/": {
     "lastmod": "2026-11-13",
-    "sha256": "7e6f906b346296b1113563e0e83b418883e4e63c52bbca0929b02e64ea9e615f"
+    "sha256": "abad5b8d6a25f28bc8066d4aeac79b2d4cc377f62fc564aaee7218b799b9f120"
   },
   "https://trtledger.com/trt/indiana/avon/": {
     "lastmod": "2026-11-13",
@@ -1121,7 +1121,7 @@
   },
   "https://trtledger.com/trt/iowa/": {
     "lastmod": "2026-11-13",
-    "sha256": "67cd8e2c0c3a3f46f2d97e471dc113ea4058cd1e17601f2d3a66cc0175e11f92"
+    "sha256": "340e85929f6e2b379d3e787dd557eb2dcdb3e673d72a5790fa9b2e4fc6989212"
   },
   "https://trtledger.com/trt/iowa/clive/": {
     "lastmod": "2026-11-13",
@@ -1137,7 +1137,7 @@
   },
   "https://trtledger.com/trt/kansas/": {
     "lastmod": "2026-11-13",
-    "sha256": "02c363ca6afc66b774a639f7b168d9de9167d61475866868ed54fe6583bfed06"
+    "sha256": "6f08913d0d41fa585f1e63f71e814f56c4cbbf693e9ad44ca0cae42f1b9cd679"
   },
   "https://trtledger.com/trt/kansas/kansas-city/": {
     "lastmod": "2026-11-13",
@@ -1165,7 +1165,7 @@
   },
   "https://trtledger.com/trt/kentucky/": {
     "lastmod": "2026-11-13",
-    "sha256": "48f44b3b83e3497289340357d4e4b18a1d3024599fb2534307f0339c01913d41"
+    "sha256": "749e3c16d379f3641684a9f3cb9ad9e1bdedb2fb775eaf97dd5bbc105cc828ac"
   },
   "https://trtledger.com/trt/kentucky/ashland/": {
     "lastmod": "2026-11-13",
@@ -1193,7 +1193,7 @@
   },
   "https://trtledger.com/trt/louisiana/": {
     "lastmod": "2026-11-13",
-    "sha256": "7a550b70c098c8e494c5d53e8e613f7f66c6a6582719fcfc42d1fe500dd98c83"
+    "sha256": "73f931678d5a3e65dc718e26a5e512a3f01b44c15367e924706183565540e980"
   },
   "https://trtledger.com/trt/louisiana/baton-rouge/": {
     "lastmod": "2026-11-13",
@@ -1221,7 +1221,7 @@
   },
   "https://trtledger.com/trt/maine/": {
     "lastmod": "2026-11-13",
-    "sha256": "719e85596a1b290856eb9731452f5ffbace38c76d2d9c816e7b710d689609ed7"
+    "sha256": "d0731acc007f367e059bc7b644d8bb02fbfc271dbaf6503e3ce6336c27a96dce"
   },
   "https://trtledger.com/trt/maine/portland/": {
     "lastmod": "2026-11-13",
@@ -1233,7 +1233,7 @@
   },
   "https://trtledger.com/trt/maryland/": {
     "lastmod": "2026-11-13",
-    "sha256": "abf34b577b2a8acd57ab4eb980e205fc90a600c6fae8f04ccc04967887a642a6"
+    "sha256": "ae4c696d7d4be30c3873d32995d7094a2c6903d41c18f06a2c315da260526dbe"
   },
   "https://trtledger.com/trt/maryland/annapolis/": {
     "lastmod": "2026-11-13",
@@ -1289,7 +1289,7 @@
   },
   "https://trtledger.com/trt/massachusetts/": {
     "lastmod": "2026-11-13",
-    "sha256": "2e8d6a51f8594d7c1cbd45b5a7fbeadcb7d946ce4db0e7d67eb6ad8d2d742a1e"
+    "sha256": "6b3067ee2aa98319719bfb6da1baa55a770eaadddde1a0997d13cfc682767324"
   },
   "https://trtledger.com/trt/massachusetts/boston/": {
     "lastmod": "2026-11-13",
@@ -1337,7 +1337,7 @@
   },
   "https://trtledger.com/trt/michigan/": {
     "lastmod": "2026-11-13",
-    "sha256": "51a8c8d7dd2124527aa91214030d418819c79afe7be8024d398f508dc7e73dc7"
+    "sha256": "45afcfc03f93db2750592b2fe5c28cd8fac0833e2ec2e31061f5d2fc370aa4b5"
   },
   "https://trtledger.com/trt/michigan/ann-arbor/": {
     "lastmod": "2026-11-13",
@@ -1393,7 +1393,7 @@
   },
   "https://trtledger.com/trt/minnesota/": {
     "lastmod": "2026-11-13",
-    "sha256": "dcd49e916a050fccdc4e52fcb2a6cace313f9bbfe0e889eb76431f34b34fa720"
+    "sha256": "8f9c931e46179f3e46fcdd9e5559d20a2aa7b984a38196cc64f2396c20d745f1"
   },
   "https://trtledger.com/trt/minnesota/eagan/": {
     "lastmod": "2026-11-13",
@@ -1413,7 +1413,7 @@
   },
   "https://trtledger.com/trt/mississippi/": {
     "lastmod": "2026-11-13",
-    "sha256": "91dfcb6895ac1c5b3eb809e531da8e356737ac2f39aabe71a733e79b29665b3a"
+    "sha256": "a6537ddec1bac22108d8cc6970bb3a9896b44309a0dba96c441c901b2a49d2b4"
   },
   "https://trtledger.com/trt/mississippi/flowood/": {
     "lastmod": "2026-11-13",
@@ -1445,7 +1445,7 @@
   },
   "https://trtledger.com/trt/missouri/": {
     "lastmod": "2026-11-13",
-    "sha256": "f5e5d443935cec4ecd98571b4d24663f121306fdebad48e7134cab55677db7a4"
+    "sha256": "60b79b49e0761677c0c8d815e5e9c75667834ebafde81795ed6032f2a647ea5d"
   },
   "https://trtledger.com/trt/missouri/chesterfield/": {
     "lastmod": "2026-11-13",
@@ -1481,7 +1481,7 @@
   },
   "https://trtledger.com/trt/montana/": {
     "lastmod": "2026-11-13",
-    "sha256": "69b9e2422f14cca524591837b14cfb5c3b14a12a491911e55a346b7cc4a4c0a8"
+    "sha256": "79da7c29f775aeb48b863a709800ac6f383d583868d24fc7bc06888761eed751"
   },
   "https://trtledger.com/trt/montana/billings/": {
     "lastmod": "2026-11-13",
@@ -1505,7 +1505,7 @@
   },
   "https://trtledger.com/trt/nebraska/": {
     "lastmod": "2026-11-13",
-    "sha256": "3db4c075af0eda9e80b6ea3d79281ba5acbc6d440c162c1ca3c96dcd4baee76f"
+    "sha256": "0f9dd28e7b79cf177e15d4991aec7caee97a3da27d1fe433be59244926365497"
   },
   "https://trtledger.com/trt/nebraska/lincoln/": {
     "lastmod": "2026-11-13",
@@ -1517,7 +1517,7 @@
   },
   "https://trtledger.com/trt/nevada/": {
     "lastmod": "2026-11-13",
-    "sha256": "a45ff7b71cc6f3657ba7fc22d00030939e182b668e98190753c140027b4c6a60"
+    "sha256": "7f0db26d395858b7dadb01084cdea998623bd5b3d6f8a9bcf1d7342b1e43334b"
   },
   "https://trtledger.com/trt/nevada/henderson/": {
     "lastmod": "2026-11-13",
@@ -1533,7 +1533,7 @@
   },
   "https://trtledger.com/trt/new-hampshire/": {
     "lastmod": "2026-11-13",
-    "sha256": "d0fdd62040ebc7a858092fa16e6429257743f62ac3681128bbac59483ae1b6b7"
+    "sha256": "b680ad5740a3b426778c29d0831c091adccd23014be2b7752ed178b0000cd2fd"
   },
   "https://trtledger.com/trt/new-hampshire/concord/": {
     "lastmod": "2026-11-13",
@@ -1557,7 +1557,7 @@
   },
   "https://trtledger.com/trt/new-jersey/": {
     "lastmod": "2026-11-13",
-    "sha256": "0771e99c2c24aebcd0a4a73f525cad514664b7e70af36c517fc912a4848b5c30"
+    "sha256": "4b698b0c1e88d855b89e851e850dfaa06038fd4b1f52ad1d4464bc7bd76452bb"
   },
   "https://trtledger.com/trt/new-jersey/bridgewater/": {
     "lastmod": "2026-11-13",
@@ -1649,7 +1649,7 @@
   },
   "https://trtledger.com/trt/new-mexico/": {
     "lastmod": "2026-11-13",
-    "sha256": "65fa72887ddc92d4c9ee541040e797c8fbe25e448ba4b5e8bebadab10c2fd04e"
+    "sha256": "ace42406717e47a8ff40bbd452aaa36d2679a7002a53e7c0b16f1b1e3e17b856"
   },
   "https://trtledger.com/trt/new-mexico/albuquerque/": {
     "lastmod": "2026-11-13",
@@ -1661,7 +1661,7 @@
   },
   "https://trtledger.com/trt/new-york/": {
     "lastmod": "2026-11-13",
-    "sha256": "100eb852c097e34f3bc8ab6b7c2a84d645febe24465d0f42c718fd0b335107d2"
+    "sha256": "fa905fd2c462a3685e36d8bbf361b218243ec08a2c7bfc1e26f1cf1d0aeb7159"
   },
   "https://trtledger.com/trt/new-york/albany/": {
     "lastmod": "2026-11-13",
@@ -1709,7 +1709,7 @@
   },
   "https://trtledger.com/trt/new-york/new-york/": {
     "lastmod": "2026-11-13",
-    "sha256": "25e421e96454077bae3b6055ad0373a925f565af10cda7614b51a3318c2bf8c8"
+    "sha256": "962e4d4f01834967bfdc9963568874a48d42e386a85c1141575f4b66ed74c0f3"
   },
   "https://trtledger.com/trt/new-york/rego-park/": {
     "lastmod": "2026-11-13",
@@ -1749,7 +1749,7 @@
   },
   "https://trtledger.com/trt/north-carolina/": {
     "lastmod": "2026-11-13",
-    "sha256": "5e08191182c3119eb17bb2277e03623dcee08b7a9bfca6b3aef0e777fd7ae5dc"
+    "sha256": "e9d54b519feb240a0278e8ceb6381efb115c1bafff45c3f36eda0a42b42cbf4b"
   },
   "https://trtledger.com/trt/north-carolina/asheville/": {
     "lastmod": "2026-11-13",
@@ -1813,7 +1813,7 @@
   },
   "https://trtledger.com/trt/north-dakota/": {
     "lastmod": "2026-11-13",
-    "sha256": "5ad482da5c0f6d0ca8aadea0c6648e743806d8e9052897b5ea9db8944f57b05e"
+    "sha256": "bebb3dbc3b8013ae9c662a8b045c8eb7b70c301a6250657c7625c471ae92fe2f"
   },
   "https://trtledger.com/trt/north-dakota/fargo/": {
     "lastmod": "2026-11-13",
@@ -1821,7 +1821,7 @@
   },
   "https://trtledger.com/trt/ohio/": {
     "lastmod": "2026-11-13",
-    "sha256": "089acd26e7286f2f84369476b573671caa62fe52e71de34a5568668a334ae1f3"
+    "sha256": "7a858fd34a0ddcbd37e4a243aa78921e632cd013dbaf1ca98f533074de50d7c1"
   },
   "https://trtledger.com/trt/ohio/akron/": {
     "lastmod": "2026-11-13",
@@ -1897,7 +1897,7 @@
   },
   "https://trtledger.com/trt/oklahoma/": {
     "lastmod": "2026-11-13",
-    "sha256": "662d69711d2ccd0a72347548e302402ad14dcafdafd7829cd0850bfb8e407102"
+    "sha256": "4d8b450e2cb58951a8cbddfd00c2ae1d517989f631935d772ac57b2899c87f12"
   },
   "https://trtledger.com/trt/oklahoma/edmond/": {
     "lastmod": "2026-11-13",
@@ -1917,7 +1917,7 @@
   },
   "https://trtledger.com/trt/oregon/": {
     "lastmod": "2026-11-13",
-    "sha256": "b99cd4a3ee9de978948ed86d70acf54c6d41c8bb53e5b79ffdf05e7e5115ceba"
+    "sha256": "3314a76ff277783067b6af6a157e5fcd6d7a151bec4cd271dca31be710d50745"
   },
   "https://trtledger.com/trt/oregon/bend/": {
     "lastmod": "2026-11-13",
@@ -1937,7 +1937,7 @@
   },
   "https://trtledger.com/trt/pennsylvania/": {
     "lastmod": "2026-11-13",
-    "sha256": "e45a70c3ad15e11fb5a5fb8888aac5926fa84551a3de11b39d03ecd6fd6c13a9"
+    "sha256": "0d37480a9d9e18eb61fd79f2e3c3ad97a29518b4ea6f2a0d764d52d10dd9ca90"
   },
   "https://trtledger.com/trt/pennsylvania/allentown/": {
     "lastmod": "2026-11-13",
@@ -2001,7 +2001,7 @@
   },
   "https://trtledger.com/trt/rhode-island/": {
     "lastmod": "2026-11-13",
-    "sha256": "aeac1c473de508a2a43cf30572439352e838bee879389697f4c9af565c4d102e"
+    "sha256": "f04af9f1cf78411683a94631a3b5498baa1dcb9ad972f64b56fcc23caf559a53"
   },
   "https://trtledger.com/trt/rhode-island/cranston/": {
     "lastmod": "2026-11-13",
@@ -2017,7 +2017,7 @@
   },
   "https://trtledger.com/trt/south-carolina/": {
     "lastmod": "2026-11-13",
-    "sha256": "db4faf1aaf8376d4fd45bee7a60b52808705c00fdc9e81389cc8ed7882324c67"
+    "sha256": "c50d5b8f7494946bf699d608a4f69231c0ba26017b6d240fb6ce8b3d4b5d05a7"
   },
   "https://trtledger.com/trt/south-carolina/charleston/": {
     "lastmod": "2026-11-13",
@@ -2061,7 +2061,7 @@
   },
   "https://trtledger.com/trt/south-dakota/": {
     "lastmod": "2026-11-13",
-    "sha256": "744cc2ac7a47cd5fc44537db5eb83b23670f058c5719b3476a6b1a8cc57b4a8d"
+    "sha256": "79918aa70469e3e3e77e2d879a8aa79d5391b385bd7257ea4490f67c915b8e19"
   },
   "https://trtledger.com/trt/south-dakota/dakota-dunes/": {
     "lastmod": "2026-11-13",
@@ -2077,7 +2077,7 @@
   },
   "https://trtledger.com/trt/tennessee/": {
     "lastmod": "2026-11-13",
-    "sha256": "f688c42a91b9fa6b1967e4b3902e34be9ebaf49c8586c228dacc2c7b3eed2a26"
+    "sha256": "985c1be2275928962c30ffa0319271ffd5e2a244e88128d2abf099ac8d5dc3b1"
   },
   "https://trtledger.com/trt/tennessee/chattanooga/": {
     "lastmod": "2026-11-13",
@@ -2129,7 +2129,7 @@
   },
   "https://trtledger.com/trt/texas/": {
     "lastmod": "2026-11-13",
-    "sha256": "979cda5611feccd1d55813a41cc0778b66e52d9391a218337ac3cd5c2c188443"
+    "sha256": "9aa686e3e9a95e6d72bcda571165c56d073011b714e8e5f97cecf6b77019f07d"
   },
   "https://trtledger.com/trt/texas/abilene/": {
     "lastmod": "2026-11-13",
@@ -2349,7 +2349,7 @@
   },
   "https://trtledger.com/trt/utah/": {
     "lastmod": "2026-11-13",
-    "sha256": "7e443702e242d84d45b6fb41a574a83e12896a5cca6abe036b153dfb126cebe6"
+    "sha256": "b68a47cdc9458c7df50c989993866a9775fec7527acd745fced4ea6c54529912"
   },
   "https://trtledger.com/trt/utah/bountiful/": {
     "lastmod": "2026-11-13",
@@ -2389,7 +2389,7 @@
   },
   "https://trtledger.com/trt/vermont/": {
     "lastmod": "2026-11-13",
-    "sha256": "7ff021b5ab7cbaa4ec93eecdf2fc0019139eeaa09ce7cd975817bd0bc3d03c23"
+    "sha256": "71f5c95a9880a1701e4ac3827d0fc88007fd500ed766d6d86b613fe50e9ce97c"
   },
   "https://trtledger.com/trt/vermont/colchester/": {
     "lastmod": "2026-11-13",
@@ -2397,7 +2397,7 @@
   },
   "https://trtledger.com/trt/virginia/": {
     "lastmod": "2026-11-13",
-    "sha256": "42ab8f4c82e194907302c5535c9d373cf77bbfc156a2798219ff87079f824328"
+    "sha256": "371f3c991d4f746154fd91bf9c5ee7ae789259d43c44fb2aec97399bc07f72d4"
   },
   "https://trtledger.com/trt/virginia/alexandria/": {
     "lastmod": "2026-11-13",
@@ -2481,7 +2481,7 @@
   },
   "https://trtledger.com/trt/washington/": {
     "lastmod": "2026-11-13",
-    "sha256": "49be35cf0bac0abe7526677e620bf8fea57fdb1f431a6c341705998171910934"
+    "sha256": "f0e04c2ff3c7d66f69fc1de3960454829bab9ef2192bf95051bbf480ff136800"
   },
   "https://trtledger.com/trt/washington/bellevue/": {
     "lastmod": "2026-11-13",
@@ -2517,7 +2517,7 @@
   },
   "https://trtledger.com/trt/west-virginia/": {
     "lastmod": "2026-11-13",
-    "sha256": "8bc4ffc9ddbbb2e5c29588b15d4c4ad86985101b26629cc2e83fd69de3d83a5e"
+    "sha256": "8ff968f2e16f9a7dfa00fd70cfb166e27740990f5fbaf0ec45afc62bc8ca1dea"
   },
   "https://trtledger.com/trt/west-virginia/charleston/": {
     "lastmod": "2026-11-13",
@@ -2533,7 +2533,7 @@
   },
   "https://trtledger.com/trt/wisconsin/": {
     "lastmod": "2026-11-13",
-    "sha256": "39489afd0235e60baabc1516eb318a5d04592b04c44e77d43d3cb5248220c55f"
+    "sha256": "3055182b64ea63383f2b1605799c542abba0d4bfa04ca5ae6895fa71a6e13ece"
   },
   "https://trtledger.com/trt/wisconsin/appleton/": {
     "lastmod": "2026-11-13",
@@ -2565,6 +2565,6 @@
   },
   "https://trtledger.com/trt/wyoming/": {
     "lastmod": "2026-11-13",
-    "sha256": "287a4cbf81dc6d0835ad4ce74de75f735f0d44063d1d7baf233ab8584ceeb8dd"
+    "sha256": "0a92801b6ce1cb0d51762d6ee0463bac0b79a1ab5db3e4167115f2edac2cfa5d"
   }
 }
