@@ -173,7 +173,7 @@ def claimed_tag(c):
     return '<span class="tag claimed">Claimed by clinic · paid</span>' if c.get("claimed") else ""
 
 
-def clinic_page_body(c, data, ranked):
+def clinic_page_body(c, data, ranked, pairs=()):
     total, parts, notes, upfront = year_one_parts(c)
     yn = lambda v, y, n, label: y if v is True else n if v is False else f"{label}: not stated"
     est = is_clinic_est(c)
@@ -200,6 +200,10 @@ def clinic_page_body(c, data, ranked):
     subj = urllib.parse.quote(f"Listing correction: {c['name']}")
     contact = c.get("claimed", {}).get("contact") if isinstance(c.get("claimed"), dict) else None
     lists = lambda items: "".join(f"<li>{e(h)}</li>" for h in items)
+    mine = [(x, y) for x, y in pairs if c["id"] in (x["id"], y["id"])]
+    compare_links = (f'<section class="dir-section" aria-labelledby="cmp"><h2 id="cmp">Compare {e(c["name"])} with similar-priced clinics</h2><ul>'
+                     + "".join(f'<li><a href="../../compare/{compare_slug(x, y)}/">{e(c["name"])} vs {e((y if x["id"] == c["id"] else x)["name"])}</a></li>' for x, y in mine)
+                     + '</ul></section>') if mine else ""
     return f"""    <div class="dir-head">
       <h1>{e(c['name'])}: TRT cost</h1>
       <div class="tags">{tags}</div>
@@ -245,12 +249,92 @@ def clinic_page_body(c, data, ranked):
     <section class="dir-section" aria-labelledby="sources">
       <h2 id="sources">Where these prices come from</h2>
       <ul>{src_items}</ul>
-      <p class="note">Last checked {fmt_date(c['checked'])}. Published prices are re-read from each clinic's own website every week. Prices change, so confirm with the clinic before you pay.</p>
+      <p class="note">Last checked {fmt_date(c['checked'])}. Most published prices are re-read from the clinic's own website every day, and the rest by hand at least once a week. Prices change, so confirm with the clinic before you pay.</p>
     </section>
+    {compare_links}
     <section class="dir-section" aria-labelledby="yours">
       <h2 id="yours">Work at {e(c['name'])}?</h2>
       <p class="sub">If anything here is wrong or out of date, <a href="mailto:{mail}?subject={subj}">email us</a> the page on your website where the correct price is published. We check it and fix the listing.
         Corrections are free and you never need to buy anything to keep your listing accurate. {f'Clinic contact: <a href="{e(contact)}" target="_blank" rel="noopener nofollow">{e(contact)}</a>. ' if contact else ''}<a href="../../for-clinics/">More for clinics</a>.</p>
+    </section>"""
+
+
+
+def compare_pairs(ranked, k=4):
+    """Each ranked clinic against the k clinics nearest to it in first-year cost. Returns sorted unique (a, b) pairs, a.id < b.id."""
+    pairs = set()
+    for c in ranked:
+        cost = year_one(c)[0]
+        near = sorted((o for o in ranked if o["id"] != c["id"]), key=lambda o: (abs(year_one(o)[0] - cost), o["id"]))[:k]
+        for o in near:
+            pairs.add(tuple(sorted((c["id"], o["id"]))))
+    by_id = {c["id"]: c for c in ranked}
+    return [(by_id[a], by_id[b]) for a, b in sorted(pairs)]
+
+
+def compare_slug(a, b):
+    x, y = sorted((a["id"], b["id"]))
+    return f"{x}-vs-{y}"
+
+
+def compare_page_body(a, b):
+    ta, pa, na, ua = year_one_parts(a)
+    tb, pb, nb, ub = year_one_parts(b)
+    yn = lambda v, y, n: y if v is True else n if v is False else "Not stated"
+    monthly = lambda c: usd(c["monthly"]) + "/mo" if c.get("monthly") else e(c.get("monthlyLabel") or "Not a monthly plan")
+    src = lambda c: f'<a href="{e(c["sourceUrl"])}" target="_blank" rel="noopener">Source{EXT_ICON}</a>'
+    rows = [
+        ("Estimated first year", usd(ta), usd(tb)),
+        ("Listed price", monthly(a), monthly(b)),
+        ("To start", usd(ua) if ua is not None else "Not published", usd(ub) if ub is not None else "Not published"),
+        ("Labs", yn(a.get("labsIncluded"), "Included", "Paid separately (counted in the total)"), yn(b.get("labsIncluded"), "Included", "Paid separately (counted in the total)")),
+        ("Medication", yn(a.get("medsIncluded"), "Included", "Paid separately (counted in the total)"), yn(b.get("medsIncluded"), "Included", "Paid separately (counted in the total)")),
+        ("Estrogen blocker", yn(a.get("aiIncluded"), "Included", "Not included"), yn(b.get("aiIncluded"), "Included", "Not included")),
+        ("Medication types", e(", ".join(a.get("forms") or []) or "Not listed"), e(", ".join(b.get("forms") or []) or "Not listed")),
+        ("Plan and contract", e(a["commitment"]), e(b["commitment"])),
+        ("hCG", e(a.get("hcg") or "Not listed"), e(b.get("hcg") or "Not listed")),
+        ("States served", e(a.get("states") or "Not listed"), e(b.get("states") or "Not listed")),
+        ("Price last checked", f"{fmt_date(a['checked'])} · {src(a)}", f"{fmt_date(b['checked'])} · {src(b)}"),
+    ]
+    trs = "".join(f'<tr><th scope="row">{label}</th><td data-label="{e(a["name"])}">{va}</td><td data-label="{e(b["name"])}">{vb}</td></tr>' for label, va, vb in rows)
+    if round(ta) == round(tb):
+        lead = f"{e(a['name'])} and {e(b['name'])} both come to about <b>{usd(ta)}</b> in the first year."
+    else:
+        lo, hi, tlo, thi = (a, b, ta, tb) if ta < tb else (b, a, tb, ta)
+        lead = (f"{e(lo['name'])} comes to about <b>{usd(tlo)}</b> in the first year and {e(hi['name'])} to about <b>{usd(thi)}</b>, "
+                f"a difference of {usd(thi - tlo)}.")
+    def math(c, total, parts, notes):
+        body = "".join(f'<tr><th scope="row">{e(label)}</th><td class="num">{usd_exact(amt) if amt is not None else ""}</td></tr>' for label, amt, _ in parts)
+        return (f'<h3>{e(c["name"])}</h3><div class="panel tablewrap"><table class="math"><tbody>{body}</tbody>'
+                f'<tfoot><tr><th scope="row">Estimated first year</th><td class="num">{usd_exact(total)}</td></tr></tfoot></table></div>'
+                + "".join(f'<p class="note">{e(n)}</p>' for n in notes)
+                + f'<p class="note"><a href="../../online/{e(c["id"])}/">Full listing for {e(c["name"])}</a></p>')
+    assumed = any(x for _, _, x in pa + pb)
+    return f"""    <div class="dir-head">
+      <h1>{e(a['name'])} vs {e(b['name'])}: TRT cost</h1>
+      <p class="lede">{lead} Both totals use the same method and the prices each clinic publishes on its own website.</p>
+    </div>
+    <section class="dir-section" aria-labelledby="side">
+      <h2 id="side">Side by side</h2>
+      <div class="panel tablewrap">
+        <table class="dir-table">
+          <thead><tr><th scope="col"></th><th scope="col">{e(a['name'])}</th><th scope="col">{e(b['name'])}</th></tr></thead>
+          <tbody>{trs}</tbody>
+        </table>
+      </div>
+      <p class="note">This compares published prices and terms only. It does not compare medical quality, safety or results, and it is not medical advice.
+        Whether a clinic can treat you depends on your state: <a href="../../#find">check the clinics for your state</a>.</p>
+    </section>
+    <section class="dir-section" aria-labelledby="math">
+      <h2 id="math">How each first-year total adds up</h2>
+      {math(a, ta, pa, na)}
+      {math(b, tb, pb, nb)}
+      {f'<p class="note">Lines marked “our assumption” use the same default for every clinic that does not publish that cost: ${ASSUME["medCost"]}/month for medication and ${ASSUME["labCost"]} lab panels {ASSUME["labsPerYear"]} times a year. You can change these on the <a href="../../#find">comparison page</a>.</p>' if assumed else ''}
+    </section>
+    <section class="dir-section" aria-labelledby="more">
+      <h2 id="more">More comparisons</h2>
+      <p class="sub"><a href="../">All clinic comparisons</a> · <a href="../../online/">All online clinics</a> · <a href="../../#overpaying">Am I overpaying?</a></p>
+      <p class="note">No clinic pays to appear here or to be shown first. Clinics are named in alphabetical order.</p>
     </section>"""
 
 
@@ -334,13 +418,13 @@ def page(path, title, desc, crumbs, body, updated, jsonld):
     <div>
       <a class="logo" href="{root}">{LOGO}</a>
       <p>An independent price guide. Clinics can't pay to be listed or ranked.</p>
-      <p class="note"><a href="{root}#faq">FAQ</a> · <a href="{root}#about">About</a> · <a href="{root}#contact">Contact</a> · <a href="{root}lab-tests/">Lab test prices</a> · <a href="{root}for-clinics/">For clinics</a></p>
+      <p class="note"><a href="{root}#faq">FAQ</a> · <a href="{root}#about">About</a> · <a href="{root}#contact">Contact</a> · <a href="{root}online/">Online clinics</a> · <a href="{root}compare/">Compare clinics</a> · <a href="{root}lab-tests/">Lab test prices</a> · <a href="{root}for-clinics/">For clinics</a></p>
       {TIP_LINE}
     </div>
     <div>
       <h3>How we get our data</h3>
       <ul>
-        <li>Online clinic prices are read from each clinic's own website every week.</li>
+        <li>Most online clinic prices are re-read from the clinic's own website every day; the rest are checked by hand at least once a week. Every listing shows its last check date.</li>
         <li>In-person clinics come from the federal <a href="https://npiregistry.cms.hhs.gov/" target="_blank" rel="noopener">NPI registry</a> and clinic chains' own location lists, refreshed monthly.</li>
       </ul>
       <p class="note">Page updated {fmt_date(updated)}.</p>
@@ -795,6 +879,7 @@ def main():
         shutil.rmtree(online_dir)
     ranked = sorted((c for c in data["clinics"] if is_trt(c) and not is_clinic_est(c)), key=lambda c: year_one(c)[0])
     listed = sorted(data["clinics"], key=lambda c: (is_clinic_est(c), year_one(c)[0]))
+    pairs = compare_pairs(ranked)
     for c in listed:
         total = year_one(c)[0]
         title = f"{c['name']} TRT Cost: First-Year Price Breakdown"
@@ -806,7 +891,7 @@ def main():
             desc = f"{c['name']} TRT costs about {usd(total)} in the first year. See the math, contract terms and the source for every price."
         path = f"online/{c['id']}/index.html"
         write(path, page(path, title, desc, [("TRT Ledger", ""), ("Online clinics", "online/"), (c["name"], None)],
-                         clinic_page_body(c, data, ranked), c["checked"], []))
+                         clinic_page_body(c, data, ranked, pairs), c["checked"], []))
         sitemap.append(f"{SITE}/online/{c['id']}/")
     trs = "".join(
         f'<tr><th scope="row"><a href="{e(c["id"])}/">{e(c["name"])}</a> {claimed_tag(c)}'
@@ -837,6 +922,43 @@ def main():
                                     [("TRT Ledger", ""), ("Online clinics", None)], body, today, []))
     sitemap.append(f"{SITE}/online/")
 
+    # ---- clinic vs clinic comparisons (each clinic against its nearest-priced clinics; neutral, sourced) ----
+    compare_dir = ROOT / "compare"
+    if compare_dir.exists():
+        shutil.rmtree(compare_dir)
+    short = lambda c: re.sub(r"\s*\(.*?\)", "", c["name"])
+    for a, b in pairs:
+        slug_ab = compare_slug(a, b)
+        title = f"{short(a)} vs {short(b)}: TRT Cost Compared"
+        if len(title) > 60:
+            title = f"{short(a)} vs {short(b)} TRT Cost"
+        if len(title) > 60:
+            title = f"{short(a)} vs {short(b)}"[:60]
+        desc = (f"{short(a)} vs {short(b)}: first-year TRT cost, monthly price, labs, medication, contract terms and states, "
+                f"side by side with sources.")
+        if len(desc) > 155:
+            desc = f"{short(a)} vs {short(b)}: first-year TRT cost, price, labs, contract terms and states, side by side."[:155]
+        path = f"compare/{slug_ab}/index.html"
+        write(path, page(path, title, desc, [("TRT Ledger", ""), ("Compare clinics", "compare/"), (f"{short(a)} vs {short(b)}", None)],
+                         compare_page_body(a, b), max(a["checked"], b["checked"]), []))
+        sitemap.append(f"{SITE}/compare/{slug_ab}/")
+    items = "".join(f'<li><a href="{compare_slug(a, b)}/">{e(a["name"])} vs {e(b["name"])}</a> '
+                    f'<span class="note">{usd(year_one(a)[0])} vs {usd(year_one(b)[0])} first year</span></li>' for a, b in pairs)
+    body = f"""    <div class="dir-head">
+      <h1>Compare TRT clinics</h1>
+      <p class="lede">Side-by-side comparisons of online TRT clinics with similar first-year costs: price, labs, medication, contract terms
+      and states, each with its source. To compare every clinic for your state at once, <a href="../#find">use the main comparison</a>.</p>
+    </div>
+    <section class="dir-section" aria-labelledby="pairs">
+      <h2 id="pairs">Comparisons</h2>
+      <p class="sub">Each clinic is paired with the clinics closest to it in first-year cost. Clinics are named in alphabetical order, and no clinic pays to appear.</p>
+      <ul class="citylist cols">{items}</ul>
+    </section>"""
+    write("compare/index.html", page("compare/index.html", "Compare Online TRT Clinics Side by Side | TRT Ledger",
+                                     "Side-by-side TRT clinic comparisons: first-year cost, monthly price, labs, contract terms and states, with sources.",
+                                     [("TRT Ledger", ""), ("Compare clinics", None)], body, today, []))
+    sitemap.append(f"{SITE}/compare/")
+
     # ---- for clinics (how clinics work with us; money never buys rank) ----
     mail = "teamtrtledger@gmail.com"
     def mailto(label, subject):
@@ -857,7 +979,7 @@ def main():
       <p class="sub">Every online clinic with published prices has its own page with the price we show, the first-year math line by line,
         the contract terms, and a link to the page on your site where we read each price. <a href="../online/">Find your clinic's page</a>.</p>
       <ul>
-        <li><strong>Where prices come from.</strong> We read them from your own website every week and show the date of the last check.</li>
+        <li><strong>Where prices come from.</strong> We read them from your own website, every day for most clinics and at least once a week for the rest, and show the date of the last check.</li>
         <li><strong>How the first-year total is built.</strong> Twelve months of your listed price, plus any intake or startup fee, plus labs and
           medication if they are billed separately. If you don't publish one of those costs we use the same stated assumption for every clinic
           (${ASSUME['medCost']}/month for medication, ${ASSUME['labCost']} lab panels {ASSUME['labsPerYear']} times a year) and mark the total as an estimate.</li>

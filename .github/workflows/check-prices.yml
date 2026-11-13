@@ -47,7 +47,7 @@ jobs:
         run: |
           git config user.name "trt-ledger-bot"
           git config user.email "trt-ledger-bot@users.noreply.github.com"
-          git add data.json data.js checker/last-report.md trt online for-clinics lab-tests pipeline/lastmod.json sitemap.xml robots.txt index.html
+          git add data.json data.js checker/last-report.md trt online compare for-clinics lab-tests pipeline/lastmod.json sitemap.xml robots.txt index.html
           git diff --cached --quiet || git commit -m "Daily price check $(date -u +%F)"
           git pull --rebase --autostash
           git push
