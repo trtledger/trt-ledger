@@ -132,6 +132,129 @@ def is_trt(c):
 
 
 # ---- page shell ----
+def year_one_parts(c):
+    """Same math as year_one() and app.js yearOne(), with the line items. Returns (total, [(label, amount, assumed)], notes, upfront)."""
+    if c.get("clinicYear1Estimate"):
+        up = c.get("startCost")
+        if up is None and (c.get("intakeFee") or c.get("labFee")):
+            up = (c.get("intakeFee") or 0) + (c.get("labFee") or 0)
+        return c["clinicYear1Estimate"], [(b, None, False) for b in c.get("year1Breakdown") or ["The clinic's own first-year figure"]], [], up
+    parts, notes = [], []
+    m = c.get("monthly") or 0
+    if m:
+        parts.append((f"Membership: 12 × {usd(m)}", m * 12, False))
+    if c.get("intakeFee"):
+        parts.append(("Intake or startup fee", c["intakeFee"], False))
+    if c.get("intakeFee") is None:
+        notes.append("The clinic doesn't publish an intake fee, so none is counted.")
+    if not c.get("medsIncluded"):
+        parts.append((f"Medication: 12 × ${ASSUME['medCost']} (our assumption)", ASSUME["medCost"] * 12, True))
+    labs_assumed = ASSUME["labCost"] * ASSUME["labsPerYear"]
+    if c.get("labsIncluded") is False:
+        if c.get("labFee"):
+            parts.append(("Labs (the clinic's published price)", c["labFee"], False))
+        else:
+            parts.append((f"Labs: {ASSUME['labsPerYear']} × ${ASSUME['labCost']} (our assumption)", labs_assumed, True))
+    if c.get("labsIncluded") is None:
+        parts.append((f"Labs: {ASSUME['labsPerYear']} × ${ASSUME['labCost']} (our assumption; the clinic doesn't say if labs are included)", labs_assumed, True))
+    if c.get("prepaid"):
+        up = c["prepaid"] + (c.get("intakeFee") or 0)
+    else:
+        up = (c.get("intakeFee") or 0) + m + ((c.get("labFee") or ASSUME["labCost"]) if c.get("labsIncluded") is False else 0)
+    return sum(a for _, a, _ in parts), parts, notes, up
+
+
+def usd_exact(n):
+    return usd(n) if float(n).is_integer() else f"${n:,.2f}"
+
+
+def claimed_tag(c):
+    """Paid 'Claimed by clinic' badge. Shown only when data.json has a claimed entry; never affects order or labels."""
+    return '<span class="tag claimed">Claimed by clinic · paid</span>' if c.get("claimed") else ""
+
+
+def clinic_page_body(c, data, ranked):
+    total, parts, notes, upfront = year_one_parts(c)
+    yn = lambda v, y, n, label: y if v is True else n if v is False else f"{label}: not stated"
+    est = is_clinic_est(c)
+    tags = "".join([
+        claimed_tag(c),
+        f'<span class="tag warn">{e(est_label(c))}</span>' if est else "",
+        f'<span class="tag model">{e(c["model"])}</span>',
+        "" if c.get("verified") else '<span class="tag warn">Unverified price</span>'])
+    monthly = usd(c["monthly"]) + "/mo" if c.get("monthly") else e(c.get("monthlyLabel") or "Not a monthly plan")
+    rows = "".join(f'<tr><th scope="row">{e(label)}</th><td class="num">{usd_exact(amt) if amt is not None else ""}</td></tr>'
+                   for label, amt, _ in parts)
+    assumed = any(a for _, _, a in parts)
+    if est:
+        place = ("This is a clinic-provided estimate: the clinic gave us these prices in writing, and they aren't on its own website yet. "
+                 "Estimates are listed after every clinic with published prices and are never called the lowest.")
+    else:
+        place = ("Where a clinic appears in the comparison depends on the visitor's state and on first-year cost, worked out the same way for every clinic. "
+                 "No clinic can pay to change it.")
+    sources = [c["sourceUrl"]] + list(c.get("additionalSourceUrls") or [])
+    src_items = "".join(f'<li><a href="{e(u)}" target="_blank" rel="noopener">{e(re.sub(r"^https?://(www[.])?", "", u).rstrip("/"))}{EXT_ICON}</a></li>' for u in sources)
+    src_kind = ("the written prices the clinic sent us on " + fmt_date(c["sourceDate"]) + (f", to be re-confirmed by {fmt_date(c['reconfirmBy'])}" if c.get("reconfirmBy") else "")
+                if est else "the clinic's own website")
+    mail = "teamtrtledger@gmail.com"
+    subj = urllib.parse.quote(f"Listing correction: {c['name']}")
+    contact = c.get("claimed", {}).get("contact") if isinstance(c.get("claimed"), dict) else None
+    lists = lambda items: "".join(f"<li>{e(h)}</li>" for h in items)
+    return f"""    <div class="dir-head">
+      <h1>{e(c['name'])}: TRT cost</h1>
+      <div class="tags">{tags}</div>
+      <p class="lede">About <b>{usd(total)}</b> in the first year. Prices come from {src_kind}, last checked {fmt_date(c['checked'])}.</p>
+      {dose_note(c)}
+      <div class="dir-cta">
+        <a class="btn-sm" href="{e(c['url'])}" target="_blank" rel="noopener nofollow" data-out="{e(c['id'])}">Visit {e(c['name'])}{EXT_ICON}</a>
+        <a class="btn-sm" href="../../#clinic-{e(c['id'])}">Compare with other clinics</a>
+      </div>
+    </div>
+    <section class="dir-section" aria-labelledby="cost">
+      <h2 id="cost">First-year cost</h2>
+      <div class="stats">
+        <div class="stat"><b>{usd(total)}</b><span>Est. first year</span></div>
+        <div class="stat"><b>{monthly}</b><span>Listed price</span></div>
+        <div class="stat"><b>{usd(upfront) if upfront is not None else 'Not published'}</b><span>To start</span></div>
+      </div>
+      <div class="panel tablewrap">
+        <table class="math">
+          <caption class="sr">How the first-year estimate for {e(c['name'])} adds up</caption>
+          <tbody>{rows}</tbody>
+          <tfoot><tr><th scope="row">Estimated first year</th><td class="num">{usd_exact(total)}</td></tr></tfoot>
+        </table>
+      </div>
+      {''.join(f'<p class="note">{e(n)}</p>' for n in notes)}
+      {f'<p class="note">Lines marked “our assumption” use the same default for every clinic that does not publish that cost: ${ASSUME["medCost"]}/month for medication and ${ASSUME["labCost"]} lab panels {ASSUME["labsPerYear"]} times a year. You can change these numbers on the <a href="../../#find">comparison page</a>.</p>' if assumed else ''}
+      <p class="note">{place}</p>
+    </section>
+    <section class="dir-section" aria-labelledby="terms">
+      <h2 id="terms">Plan and contract</h2>
+      <p class="sub">{e(c['commitment'])}</p>
+      <ul>
+        <li>{yn(c.get('labsIncluded'), 'Labs included', 'Labs paid separately (counted in the total)', 'Labs')}</li>
+        <li>{yn(c.get('medsIncluded'), 'Medication included', 'Medication paid separately (counted in the total)', 'Medication')}</li>
+        <li>{yn(c.get('aiIncluded'), 'Estrogen blocker included', 'No estrogen blocker', 'Estrogen blocker')}</li>
+        <li>Medication types: {e(', '.join(c['forms'])) if c.get('forms') else 'not listed'}</li>
+        <li>hCG: {e(c.get('hcg') or 'Not listed')}</li>
+        <li>States served: {e(c.get('states') or 'Not listed')}</li>
+      </ul>
+    </section>
+    {f'<section class="dir-section" aria-labelledby="get"><h2 id="get">What the clinic says you get</h2><ul>{lists(c["highlights"])}</ul></section>' if c.get('highlights') else ''}
+    {f'<section class="dir-section" aria-labelledby="watch"><h2 id="watch">Watch out for</h2><ul>{lists(c["watchOuts"])}</ul></section>' if c.get('watchOuts') else ''}
+    <section class="dir-section" aria-labelledby="sources">
+      <h2 id="sources">Where these prices come from</h2>
+      <ul>{src_items}</ul>
+      <p class="note">Last checked {fmt_date(c['checked'])}. Published prices are re-read from each clinic's own website every week. Prices change, so confirm with the clinic before you pay.</p>
+    </section>
+    <section class="dir-section" aria-labelledby="yours">
+      <h2 id="yours">Work at {e(c['name'])}?</h2>
+      <p class="sub">If anything here is wrong or out of date, <a href="mailto:{mail}?subject={subj}">email us</a> the page on your website where the correct price is published. We check it and fix the listing.
+        Corrections are free and you never need to buy anything to keep your listing accurate. {f'Clinic contact: <a href="{e(contact)}" target="_blank" rel="noopener nofollow">{e(contact)}</a>. ' if contact else ''}<a href="../../for-clinics/">More for clinics</a>.</p>
+    </section>"""
+
+
+
 THEME_HEAD = ("<script>try{document.documentElement.dataset.theme=localStorage.getItem('trtTheme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>")
 THEME_BTN_JS = ("<script>document.getElementById('themeBtn').addEventListener('click',()=>{const r=document.documentElement;"
                 "const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;"
@@ -360,7 +483,7 @@ def online_table(st, data, root):
             f'<span class="tag warn">{e(est_label(c))}</span>' if is_clinic_est(c) else "",
             '<span class="tag model">Estimate</span>' if est else ""])
         monthly = usd(c["monthly"]) + "/mo" if c.get("monthly") else e(c.get("monthlyLabel") or "—")
-        trs.append(f"""<tr><th scope="row"><a href="{e(c['url'])}" target="_blank" rel="noopener nofollow">{e(c['name'])}</a> {tags}{dose_note(c)}</th>
+        trs.append(f"""<tr><th scope="row"><a href="{root}online/{e(c['id'])}/">{e(c['name'])}</a> {claimed_tag(c)}{tags}{dose_note(c)}</th>
         <td class="num" data-label="First year">{usd(cost)}</td><td data-label="Price">{monthly}</td><td data-label="Labs">{yn(c.get('labsIncluded'), 'Included', 'Separate (in total)')}</td>
         <td data-label="Medication">{yn(c.get('medsIncluded'), 'Included', 'Separate (in total)')}</td><td data-label="Contract">{e(c['commitment'])}</td></tr>""")
     return f"""
@@ -661,44 +784,138 @@ def main():
                                  "Find TRT clinics in every U.S. state: online clinics with sourced first-year costs and in-person clinics by city.",
                                  [("TRT Ledger", ""), ("Browse by state", None)], body, today, []))
 
+    # ---- one listing page per online clinic (the full first-year math, terms and sources) ----
+    online_dir = ROOT / "online"
+    if online_dir.exists():
+        shutil.rmtree(online_dir)
+    ranked = sorted((c for c in data["clinics"] if is_trt(c) and not is_clinic_est(c)), key=lambda c: year_one(c)[0])
+    listed = sorted(data["clinics"], key=lambda c: (is_clinic_est(c), year_one(c)[0]))
+    for c in listed:
+        total = year_one(c)[0]
+        title = f"{c['name']} TRT Cost: First-Year Price Breakdown"
+        if len(title) > 60:
+            title = f"{c['name']} TRT Cost | TRT Ledger"
+        desc = (f"{c['name']} TRT costs about {usd(total)} in the first year. See the line-by-line math, contract terms, "
+                f"what's included and the source for every price.")
+        if len(desc) > 155:
+            desc = f"{c['name']} TRT costs about {usd(total)} in the first year. See the math, contract terms and the source for every price."
+        path = f"online/{c['id']}/index.html"
+        write(path, page(path, title, desc, [("TRT Ledger", ""), ("Online clinics", "online/"), (c["name"], None)],
+                         clinic_page_body(c, data, ranked), c["checked"], []))
+        sitemap.append(f"{SITE}/online/{c['id']}/")
+    trs = "".join(
+        f'<tr><th scope="row"><a href="{e(c["id"])}/">{e(c["name"])}</a> {claimed_tag(c)}'
+        f'{f"""<span class="tag warn">{e(est_label(c))}</span>""" if is_clinic_est(c) else ""}</th>'
+        f'<td class="num" data-label="First year">{usd(year_one(c)[0])}</td>'
+        f'<td data-label="Price">{usd(c["monthly"]) + "/mo" if c.get("monthly") else e(c.get("monthlyLabel") or "—")}</td>'
+        f'<td data-label="Checked">{fmt_date(c["checked"])}</td></tr>' for c in listed)
+    nop = "".join(f'<li><a href="{e(c["url"])}" target="_blank" rel="noopener nofollow">{e(c["name"])}</a> — {e(c["note"])}</li>'
+                  for c in data.get("noPricing", []))
+    body = f"""    <div class="dir-head">
+      <h1>Online TRT clinics</h1>
+      <p class="lede">Every online clinic we track, with its own page showing the first-year math line by line, the contract terms and
+      the source for each price. To filter by your state and your own costs, <a href="../#find">use the comparison</a>.</p>
+    </div>
+    <section class="dir-section" aria-labelledby="all">
+      <h2 id="all">Clinics with prices</h2>
+      <p class="sub">Sorted by estimated first-year cost with the same assumptions for every clinic. Clinic-provided estimates are listed last.</p>
+      <div class="panel tablewrap">
+        <table class="dir-table">
+          <thead><tr><th scope="col">Clinic</th><th scope="col">Est. first year</th><th scope="col">Listed price</th><th scope="col">Checked</th></tr></thead>
+          <tbody>{trs}</tbody>
+        </table>
+      </div>
+    </section>
+    {f'<section class="dir-section" aria-labelledby="nop"><h2 id="nop">Clinics that do not publish full prices</h2><ul>{nop}</ul></section>' if nop else ''}"""
+    write("online/index.html", page("online/index.html", "Online TRT Clinics: Prices and First-Year Costs",
+                                    "Every online TRT clinic we track, with a page for each: first-year cost math, contract terms and price sources.",
+                                    [("TRT Ledger", ""), ("Online clinics", None)], body, today, []))
+    sitemap.append(f"{SITE}/online/")
+
     # ---- for clinics (how clinics work with us; money never buys rank) ----
     mail = "teamtrtledger@gmail.com"
-    def offer(title, text, subject):
-        return (f'<li><h3>{title}</h3><p>{text}</p>'
-                f'<a class="btn-sm" href="mailto:{mail}?subject={urllib.parse.quote(subject)}">Email us</a></li>')
+    def mailto(label, subject):
+        return f'<a class="btn-sm" href="mailto:{mail}?subject={urllib.parse.quote(subject)}">{label}</a>'
+    def offer(title, price, intro, gets, not_gets, terms, subject):
+        return (f'<li><h3>{title}</h3><p class="price">{price}</p><p>{intro}</p>'
+                f'<h4>What you get</h4><ul>{"".join(f"<li>{g}</li>" for g in gets)}</ul>'
+                f'<h4>What it does not include</h4><ul>{"".join(f"<li>{g}</li>" for g in not_gets)}</ul>'
+                f'<p class="note">{terms}</p>{mailto("Email us", subject)}</li>')
+    n_pub = sum(1 for c in data["clinics"] if not is_clinic_est(c))
     body = f"""    <div class="dir-head">
       <h1>For clinics</h1>
-      <p class="lede">TRT Ledger compares what patients really pay in year one. Clinics can work with us in the ways below, and
-      none of them changes where a clinic ranks.</p>
+      <p class="lede">TRT Ledger compares what patients really pay in year one. This page explains how your listing works, how to fix it
+      for free, and what the paid options do and don't include. Nothing on this page changes where a clinic ranks.</p>
     </div>
-    <section class="dir-section" aria-labelledby="free">
-      <h2 id="free">Free, always</h2>
-      <ul class="offer-list">
-        {offer("Fix or add your listing", "If a price is wrong, missing or out of date, send us the page where it's published. "
-               "We check it and update the site, usually within a week.", "Listing correction")}
+    <section class="dir-section" aria-labelledby="listing">
+      <h2 id="listing">Your listing</h2>
+      <p class="sub">Every online clinic with published prices has its own page with the price we show, the first-year math line by line,
+        the contract terms, and a link to the page on your site where we read each price. <a href="../online/">Find your clinic's page</a>.</p>
+      <ul>
+        <li><strong>Where prices come from.</strong> We read them from your own website every week and show the date of the last check.</li>
+        <li><strong>How the first-year total is built.</strong> Twelve months of your listed price, plus any intake or startup fee, plus labs and
+          medication if they are billed separately. If you don't publish one of those costs we use the same stated assumption for every clinic
+          (${ASSUME['medCost']}/month for medication, ${ASSUME['labCost']} lab panels {ASSUME['labsPerYear']} times a year) and mark the total as an estimate.</li>
+        <li><strong>Plans with several terms.</strong> When the price depends on the term (for example monthly, 6-month and 12-month prepaid),
+          the listing uses the lowest published price, shows what must be paid up front to get it, and lists the other terms.</li>
+        <li><strong>Promotions.</strong> We list standing published prices. Short-term promotions and coupon codes aren't used in the math.</li>
       </ul>
+    </section>
+    <section class="dir-section" aria-labelledby="free">
+      <h2 id="free">Free, always: fix or add your listing</h2>
+      <p class="sub">You never need to buy anything to correct your listing or keep it accurate. That applies to every clinic, whether or not it pays for anything.</p>
+      <ol>
+        <li>Email us the address of the page on your website where the correct price or term is published.</li>
+        <li>We check the page and update the listing, usually within a week.</li>
+        <li>If the price isn't on your website yet, you can send it in writing. We can show it as a labelled “clinic-provided estimate”,
+          listed after clinics with published prices, until it is on your site.</li>
+      </ol>
+      <p class="note">We change facts: prices, fees, terms, what's included, states served. We write the listing ourselves, so clinics can't add marketing copy or remove a fee or a caution.</p>
+      {mailto("Send a correction", "Listing correction")}
     </section>
     <section class="dir-section" aria-labelledby="paid">
       <h2 id="paid">Paid options</h2>
+      <p class="sub">Three optional services, each with a fixed public price. None of them changes rankings, the cost math or any label.</p>
       <ul class="offer-list">
-        {offer("“Claimed by clinic” badge", "Your clinic confirms its own pricing with us directly, and we show a badge next to "
-               "your name. Rankings still sort by true first-year cost only.", "Claimed badge")}
-        {offer("Market pricing report", "A pricing report is in preparation using the published prices tracked by this site. "
-               "Email us to ask about availability and scope.", "Pricing report")}
+        {offer("“Claimed by clinic” badge", "$49/month or $399/year",
+               "A badge on your listing that reads “Claimed by clinic · paid”. It means your team confirmed your published prices with us and paid for the badge. It is not a review or an endorsement.",
+               ["The badge next to your clinic's name", "Your own contact link on your listing page", "A fixed turnaround for price corrections: 5 business days"],
+               ["A higher position or a “lowest” label", "Editing the listing's wording", "Analytics, visitor numbers or referral reports", "Any change to how a competitor is shown"],
+               "Your prices must be published on your own website. Monthly: cancel any time before the next billing date. Annual: full refund within 14 days. The badge comes off and billing stops if your prices stop being published or are wrong and not fixed within 10 days.",
+               "Claimed badge")}
+        {offer("Competitor Price Watch", "$29/month",
+               "One email a week listing what changed in the published prices of the other clinics we track. Available now.",
+               ["Changes to monthly prices, intake or startup fees, lab costs and first-year totals", "Clinics added, and clinics that stopped publishing a price",
+                "The source link and check date for every change", f"All {n_pub} clinics with published prices, or a list you choose"],
+               ["Private or non-public data: these are the same prices anyone can see on this site", "Any change to your listing or anyone else's"],
+               "Renews monthly until you cancel. Cancel any time by replying to any email; billing stops at the end of that month. Ask us for a sample email.",
+               "Competitor Price Watch")}
+        {offer("TRT market pricing report", "$149 per edition or $449/year (4 quarterly editions)",
+               "A PDF report on U.S. TRT pricing built from the published prices on this site and our in-person clinic directory. Available now.",
+               ["First-year costs, what plans include and plan models across the clinics we track", "Where totals rely on stated assumptions", "A free 2-page sample on request"],
+               ["Medical quality, safety or outcome comparisons", "Investment advice", "Any effect on a clinic's listing or position"],
+               "Delivered by email within 1 business day of payment. Licence: internal use by the buying organization. Full refund within 14 days.",
+               "Pricing report")}
       </ul>
+    </section>
+    <section class="dir-section" aria-labelledby="audience">
+      <h2 id="audience">Audience and referral data</h2>
+      <p class="sub">TRT Ledger launched in November 2026 and is a small, growing site. We don't publish traffic numbers here, but we share current
+        visit and page-view figures with any clinic that asks. We don't sell leads, and we don't offer referral or click reports as part of any paid option.</p>
+      {mailto("Ask for current numbers", "Audience numbers")}
     </section>
     <section class="dir-section" aria-labelledby="never">
       <h2 id="never">What money never buys</h2>
       <ul>
-        <li>A higher ranking or a “best” label.</li>
+        <li>A higher ranking or a “best” or “lowest” label.</li>
         <li>Hiding a fee, or removing or burying a competitor.</li>
         <li>Changing how we calculate first-year cost.</li>
       </ul>
       <p class="note">Paid relationships are disclosed next to the clinic they apply to.</p>
     </section>"""
     write("for-clinics/index.html", page(
-        "for-clinics/index.html", "For clinics — TRT Ledger",
-        "How TRT clinics can correct a listing, ask about a claimed badge or pricing report. Money never buys rank.",
+        "for-clinics/index.html", "For Clinics: Listings, Corrections and Pricing | TRT Ledger",
+        "How TRT clinic listings work, how to correct yours for free, and prices for the badge, Price Watch and report. Money never buys rank.",
         [("TRT Ledger", ""), ("For clinics", None)], body, today, []))
     sitemap.append(f"{SITE}/for-clinics/")
 
