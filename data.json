@@ -388,7 +388,7 @@
       "name": "Feel30",
       "url": "https://feel30.com",
       "sourceUrl": "https://feel30.com/product/injectable-testosterone-cypionate",
-      "checked": "2026-11-09",
+      "checked": "2026-11-13",
       "verified": true,
       "model": "Prepaid plan",
       "monthly": 149,
@@ -403,27 +403,27 @@
       ],
       "aiIncluded": null,
       "hcg": "Not mentioned on the TRT product page",
-      "commitment": "$149/mo needs 12-month prepay ($1,788); $189/mo on 6 months; $229/mo month-to-month",
+      "commitment": "The product page shows only a 'starting at' $149/mo price (checked Nov 13, 2026). On Nov 9 it listed $149/mo on a 12-month prepaid plan ($1,788), $189/mo on 6 months and $229/mo month-to-month; those terms are no longer shown. Confirm the term and total with Feel30 before you pay",
       "states": "Not listed",
       "highlights": [
-        "Testosterone cypionate injections: $149/mo (12-mo prepaid), $189/mo (6-mo prepaid), $229/mo month-to-month",
+        "Testosterone cypionate injections 'starting at' $149/mo",
         "Page says bloodwork, medication, doctor consults and shipping are included ('All-Inclusive Price No upsells. No hidden fees')",
         "At-home nurse visit or in-clinic lab option; vitamin D biomarker included",
         "Free 24-48hr shipping; 100% refundable if not eligible",
         "Guarantee of 10% total-testosterone increase for first-time patients or medication is free"
       ],
       "watchOuts": [
-        "Headline $149/mo requires paying $1,788 upfront for 12 months; monthly-billed price is $229",
-        "Strikethrough 'Starting at $399.99' reference price is a marketing anchor",
-        "No anastrozole/AI or hCG mentioned",
+        "Term prices aren't on the public page now. When last shown (Nov 9, 2026), $149/mo needed $1,788 paid upfront for 12 months and the month-to-month price was $229",
+        "A struck-through $399.99 appears next to the $149 price; the page doesn't say what plan that price was for",
+        "No anastrozole (estrogen blocker) or hCG mentioned",
         "States served not listed",
-        "Page copy has inconsistencies (mentions Sermorelin and 'Oral TRT' on the injectable page; says 'no labs or appointments needed' while also advertising included lab work)"
+        "The injectable page also mentions Sermorelin and 'Oral TRT', and says 'no labs or appointments needed' while listing lab work as included"
       ],
       "prepaid": 1788,
       "watch": [
         {
           "field": "monthly",
-          "pattern": "\\$(\\d+)/month Total \\$1,7"
+          "pattern": "Total Price \\$ ?(\\d+) ?/mo"
         }
       ]
     },
