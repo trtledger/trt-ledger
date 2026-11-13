@@ -126,7 +126,7 @@ function render(){
           ${doseNote(c)}
         </div>
         <div class="cost"><span class="lbl">Est. first year</span><b>${usd(y.total)}</b><span class="mo">${c.monthly?usd(c.monthly)+'/mo':(c.monthlyLabel||'')}</span>
-          <a class="btn-sm" href="${c.url}" target="_blank" rel="noopener nofollow" aria-label="Visit ${c.name} (opens in a new tab)">Visit site${ICON.ext}</a>
+          <a class="btn-sm" href="${c.url}" target="_blank" rel="noopener nofollow" data-out="${c.id}" aria-label="Visit ${c.name} (opens in a new tab)">Visit site${ICON.ext}</a>
           <span class="src">Checked ${fmtDate(c.checked)} · <a href="${c.sourceUrl}" target="_blank" rel="noopener">Source${ICON.ext}</a></span></div>
       </div>
       <ul class="inc" aria-label="What's included">
@@ -372,7 +372,7 @@ function calcOverpay(){
   const picks = cheaperConf.concat(cheaperUnsure).slice(0,3).concat(ests.filter(r=>r.cost<mine).slice(0,1)).map(r=>`<div class="pick">
       <div><b>${r.c.name}</b> ${tags(r)}</div><div class="save">Save ${usd(mine-r.cost)}/yr</div>
       <div class="sub2">${usd(r.cost)} first year · ${labsTxt(r.c)} · ${r.c.commitment} ·
-        <a href="#clinic-${r.c.id}" data-goto="${r.c.id}">Details</a> · <a href="${r.c.url}" target="_blank" rel="noopener nofollow">Visit${ICON.ext}</a></div>
+        <a href="#clinic-${r.c.id}" data-goto="${r.c.id}">Details</a> · <a href="${r.c.url}" target="_blank" rel="noopener nofollow" data-out="${r.c.id}">Visit${ICON.ext}</a></div>
     </div>`).join('');
 
   const shareText = save >= 120 ? `I could save ${usd(save)} a year on TRT. See what clinics really cost:` : `I checked my TRT costs against the online clinics. See what they really cost:`;
@@ -686,3 +686,10 @@ if (/^#clinic-/.test(startHash)) {   // a link to one clinic: show the whole lis
   const card = document.getElementById(startHash.slice(1));
   if (card) { const d = card.querySelector('details'); if (d) d.open = true; setTimeout(() => card.scrollIntoView({behavior:'instant', block:'start'}), 0); }
 } else if (startHash && !/^#state=/.test(startHash)) setTimeout(() => document.getElementById(startHash.slice(1))?.scrollIntoView({behavior:'instant'}), 0);
+
+// ---------- Outbound click counts (GoatCounter, cookieless) ----------
+// Counts a click on a "Visit" link per clinic. Never changes the link, the order or any label.
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[data-out]');
+  if (a && window.goatcounter && window.goatcounter.count) window.goatcounter.count({path: 'out/' + a.dataset.out, title: 'Visit ' + a.dataset.out, event: true});
+});

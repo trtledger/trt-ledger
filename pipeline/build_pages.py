@@ -259,6 +259,10 @@ THEME_HEAD = ("<script>try{document.documentElement.dataset.theme=localStorage.g
 THEME_BTN_JS = ("<script>document.getElementById('themeBtn').addEventListener('click',()=>{const r=document.documentElement;"
                 "const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;"
                 "r.dataset.theme=dark?'light':'dark';try{localStorage.setItem('trtTheme',r.dataset.theme)}catch(e){}});</script>")
+GOATCOUNTER = ('<!-- GoatCounter (cookieless): counts page views and clicks on "Visit" links to clinic sites -->'
+               '<script data-goatcounter="https://trtledger.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>'
+               "<script>document.addEventListener('click',e=>{const a=e.target.closest('a[data-out]');"
+               "if(a&&window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:'out/'+a.dataset.out,title:'Visit '+a.dataset.out,event:true})})</script>")
 TIP_URL = "https://buy.stripe.com/6oU28qgtxf9n6w48PI7IY02"
 TIP_LINE = (f'<p class="note tip-line">TRT Ledger is free and independent. Tips help keep it that way: '
             f'<a href="{TIP_URL}" rel="noopener">Support TRT Ledger</a>.<br>Tips never affect any listing or ranking.</p>')
@@ -348,6 +352,7 @@ def page(path, title, desc, crumbs, body, updated, jsonld):
   </div>
 </footer>
 {THEME_BTN_JS}
+{GOATCOUNTER}
 <!-- Cloudflare Web Analytics (cookieless) --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "7bbc9c353324479fba8c959db812bccd"}}'></script>
 </body>
 </html>
