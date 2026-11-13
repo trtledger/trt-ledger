@@ -121,7 +121,7 @@ function render(){
         <div class="rank" aria-hidden="true">${rank}</div>
         <div class="who">
           <h3>${c.name}</h3>
-          <div class="tags">${best?'<span class="tag best">Lowest first-year cost</span>':''}${estTag(c)}<span class="tag model">${c.model}</span>${
+          <div class="tags">${best?'<span class="tag best">Lowest first-year cost</span>':''}${c.claimed?'<span class="tag claimed">Claimed by clinic · paid</span>':''}${estTag(c)}<span class="tag model">${c.model}</span>${
             serves===null?'<span class="tag warn">Check your state</span>':''}${!c.verified?'<span class="tag warn">Unverified price</span>':''}${staleTag(c.checked)}</div>
           ${doseNote(c)}
         </div>
@@ -144,6 +144,7 @@ function render(){
           <div><h4>What you get</h4><ul>${c.highlights.map(h=>`<li>${h}</li>`).join('')}</ul></div>
           <div><h4>Watch out for</h4><ul>${c.watchOuts.map(h=>`<li>${h}</li>`).join('')}</ul></div>
         </div>
+        <p class="card-links"><a href="online/${c.id}/">Full listing page for ${c.name}</a></p>
       </details>
     </article>`;
   }).join('') : '<div class="panel empty">No clinics match. Try removing a filter.</div>';
@@ -680,4 +681,8 @@ if(!initial){ try { initial = localStorage.getItem('trtState'); } catch(e){} }
 try { const z=localStorage.getItem('trtZip'); if(z && zipToState(z)===initial){ currentZip=z; $('zip').value=z; } } catch(e){}
 setState(NAMES[initial] ? initial : '');
 // Landing on a section from a link (e.g. a state guide's ?state=TX#find): jump there without animating
-if (startHash && !/^#state=/.test(startHash)) setTimeout(() => document.getElementById(startHash.slice(1))?.scrollIntoView({behavior:'instant'}), 0);
+if (/^#clinic-/.test(startHash)) {   // a link to one clinic: show the whole list and open its breakdown
+  resultsExpanded = true; render();
+  const card = document.getElementById(startHash.slice(1));
+  if (card) { const d = card.querySelector('details'); if (d) d.open = true; setTimeout(() => card.scrollIntoView({behavior:'instant', block:'start'}), 0); }
+} else if (startHash && !/^#state=/.test(startHash)) setTimeout(() => document.getElementById(startHash.slice(1))?.scrollIntoView({behavior:'instant'}), 0);
