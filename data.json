@@ -140,7 +140,7 @@
       "medsIncluded": true,
       "clinicYear1Estimate": null,
       "forms": [
-        "injection"
+        "cream"
       ],
       "aiIncluded": null,
       "hcg": "Not listed",
@@ -168,7 +168,7 @@
       "name": "Hone Health",
       "url": "https://honehealth.com",
       "sourceUrl": "https://honehealth.com",
-      "checked": "2026-11-14",
+      "checked": "2026-11-17",
       "verified": true,
       "model": "Membership + meds",
       "monthly": 155,
@@ -194,7 +194,7 @@
       "watch": [
         {
           "field": "monthly",
-          "pattern": "\\$(\\d+) ?/month plus cost of medication",
+          "pattern": "\\$(\\d+) ?/ ?month (?:plus cost of|\\+) ?medication",
           "pick": "max"
         }
       ],
@@ -516,7 +516,7 @@
       "name": "Viking Alternative Medicine",
       "url": "https://vikingalternative.com",
       "sourceUrl": "https://vikingalternative.com/pricing/",
-      "checked": "2026-11-16",
+      "checked": "2026-11-17",
       "verified": true,
       "model": "Flat monthly",
       "monthly": 100,
@@ -679,7 +679,7 @@
       "name": "Somira Health",
       "url": "https://somirahealth.com",
       "sourceUrl": "https://somirahealth.com/mens-health/",
-      "checked": "2026-11-13",
+      "checked": "2026-11-17",
       "verified": true,
       "model": "Pay per plan, no subscription",
       "monthly": 100,
@@ -710,7 +710,7 @@
       "name": "Talon Wellness",
       "url": "https://www.talonwellness.com",
       "sourceUrl": "https://www.talonwellness.com/trt-price-breakdown",
-      "checked": "2026-11-13",
+      "checked": "2026-11-17",
       "verified": true,
       "model": "Pay per vial, no membership",
       "monthly": null,
@@ -761,6 +761,12 @@
         "Extra syringes ($1 per IM set, $5 per 10 SQ), HCG, semaglutide and tirzepatide cost extra; prices not listed",
         "Modeled at 140 mg/week; the clinic's own totals run $640 (100 mg/week) to $887 (200 mg/week)",
         "Start: $75 consult + $99 labs + first $80 vial + $15 shipping + $2.40 card fee"
+      ],
+      "watch": [
+        {
+          "field": "clinicYear1Estimate",
+          "pattern": "First-year base total \\$[\\d,.]+ \\$([\\d,.]+) \\$[\\d,.]+"
+        }
       ]
     },
     {
@@ -806,12 +812,18 @@
         "Labs via Goodlabs: $81 baseline, $72 follow-up (CBC, CMP, free/total T, sensitive E2, PSA)"
       ],
       "watchOuts": [
-        "Prices are from the clinic's owner in writing (Nov 5–6, 2026), not from its website",
+        "Prices are from the clinic's owner in writing (Nov 5–6, 2026). As of Nov 17, 2026 the clinic's site shows \"Testosterone Optimization $90 per month\" but says medications are \"dispensed and billed directly by a licensed compounding pharmacy\"; the owner's written note said the $90 includes testosterone. Confirm with the clinic before paying",
         "Labs extra: quarterly in year one, then every 6–12 months",
         "HCG, enclomiphene with testosterone, and GLP-1s billed at pharmacy cost plus shipping",
         "Syringes not included; the clinic suggests buying 27g ½-inch SQ syringes yourself",
         "Florida and Texas only",
         "Start: $90 first month + $81 baseline labs"
+      ],
+      "watch": [
+        {
+          "field": "monthly",
+          "pattern": "Testosterone Optimization.{0,200}?\\$(\\d+) per month"
+        }
       ]
     },
     {
@@ -823,7 +835,7 @@
         "https://prescribedrx.com/plans/health-assessment-trt/",
         "https://prescribedrx.com/plans/trt-cream/"
       ],
-      "checked": "2026-11-13",
+      "checked": "2026-11-17",
       "verified": true,
       "model": "Billed every 3 months",
       "monthly": 129,
@@ -852,6 +864,16 @@
         "Billed 3 months at a time",
         "Injectable testosterone not available in AL, AR, CT, GA, LA, MN, PA or RI",
         "Start: $69 panel, then $387 for the first 3 months once prescribed"
+      ],
+      "watch": [
+        {
+          "field": "monthly",
+          "pattern": "\\$(\\d+) a month at any dose"
+        },
+        {
+          "field": "prepaid",
+          "pattern": "\\$(\\d+) every 3 months"
+        }
       ]
     },
     {
@@ -894,6 +916,52 @@
         {
           "field": "monthly",
           "pattern": "12-month commitment \\$ ?(\\d+) ?/month"
+        }
+      ]
+    },
+    {
+      "id": "joi-blokes",
+      "name": "Joi + Blokes",
+      "url": "https://joiandblokes.com",
+      "sourceUrl": "https://joiandblokes.com/shop/men/hormone-health/testosterone-replacement-therapy/",
+      "checked": "2026-11-17",
+      "verified": true,
+      "model": "Prepaid plan",
+      "monthly": 99,
+      "prepaid": 1188,
+      "intakeFee": null,
+      "labsIncluded": true,
+      "labFee": null,
+      "medsIncluded": true,
+      "clinicYear1Estimate": null,
+      "forms": [
+        "injection"
+      ],
+      "aiIncluded": null,
+      "hcg": "Not mentioned",
+      "commitment": "$99/mo on a 12-month commitment ($1,188 upfront); $129/mo on 6 months ($774); $149/mo on 3 months ($447). Page says \"Easy cancellations\"",
+      "states": "All except AL, AR, CT, DE, GA, HI, LA, MN, MO, MS, NC, ND, OK, PA, RI, SC",
+      "highlights": [
+        "Page says the monthly subscription \"includes all medications, clinician consults and follow-up labs. No hidden fees\"",
+        "Lists clinician visits, testosterone and supplies delivered, quarterly lab tests, 1:1 health coaching and unlimited messaging",
+        "$99/mo needs a 12-month commitment billed upfront; shorter terms cost more per month"
+      ],
+      "watchOuts": [
+        "The lowest price needs 12 months paid upfront ($1,188); 6 months is $129/mo ($774) and 3 months is $149/mo ($447)",
+        "\"Start now for $75\" appears next to the plan description; the page doesn't say what the $75 covers, so it is not counted",
+        "Page says a lab and clinician visit are required before treatment; the cost of the first lab isn't stated",
+        "Testosterone can't be prescribed or shipped to 16 states (AL, AR, CT, DE, GA, HI, LA, MN, MO, MS, NC, ND, OK, PA, RI, SC)",
+        "Page notes some Blokes drugs may be compounded products not approved by the FDA",
+        "Intake fee not confirmed; no intake amount is included in this estimate"
+      ],
+      "watch": [
+        {
+          "field": "monthly",
+          "pattern": "Price: \\$(\\d+)/mo Commitment: 12 months"
+        },
+        {
+          "field": "prepaid",
+          "pattern": "Commitment: 12 months Upfront Payment: \\$([\\d,]+)"
         }
       ]
     }
@@ -1098,22 +1166,16 @@
       "checked": "2026-11-04"
     },
     {
-      "name": "Joi + Blokes",
-      "url": "https://joiandblokes.com/shop/men/hormone-health/testosterone-replacement-therapy/",
-      "note": "The current TRT page describes clinician visits, medication delivery and quarterly labs, but does not display a price. The previous $99/month figure could not be reconfirmed.",
-      "checked": "2026-11-04"
-    },
-    {
       "name": "Maximus",
       "url": "https://www.maximustribe.com/testosterone/Testosterone-Cream",
-      "note": "Offers testosterone cream and other treatment options. The current official cream page does not publish plan prices; previous third-party pricing is not used for ranking.",
-      "checked": "2026-11-04"
+      "note": "The cream page now shows plan prices ($179.99/mo month to month, $119.99/mo on 3 months, $99.99/mo on 9 months billed upfront) with the footnote \"Pricing varies by dosage and plan length. May vary slightly by state.\" It doesn't say whether labs or consults are included or which states are served, so it is not ranked.",
+      "checked": "2026-11-17"
     },
     {
       "name": "H4M Wellness (HormonesForMe)",
       "url": "https://goh4m.com/",
       "note": "Custom wellness plans start at $235 per 3 months, with free consult and onboarding; labs are separate. The page does not establish a complete testosterone-specific cost, so this is not ranked.",
-      "checked": "2026-11-04"
+      "checked": "2026-11-17"
     },
     {
       "name": "Ryze HRT",
@@ -1182,8 +1244,14 @@
       "price": 59.0,
       "fees": 6.0,
       "sourceUrl": "https://www.walkinlab.com/products/view/testosterone-total-blood-test-male-only",
-      "checked": "2026-11-13",
-      "verified": true
+      "checked": "2026-11-17",
+      "verified": true,
+      "watch": [
+        {
+          "field": "price",
+          "pattern": "Add to Cart: \\$([\\d.]+)"
+        }
+      ]
     },
     {
       "test": "Bioavailable + total testosterone",
@@ -1192,8 +1260,14 @@
       "price": 139.0,
       "fees": 6.0,
       "sourceUrl": "https://www.walkinlab.com/products/view/testosterone-free-bioavailable-total-blood-test-lc-ms-ms",
-      "checked": "2026-11-13",
-      "verified": true
+      "checked": "2026-11-17",
+      "verified": true,
+      "watch": [
+        {
+          "field": "price",
+          "pattern": "Add to Cart: \\$([\\d.]+)"
+        }
+      ]
     },
     {
       "test": "Free & weakly bound testosterone",
@@ -1202,8 +1276,14 @@
       "price": 139.0,
       "fees": 6.0,
       "sourceUrl": "https://www.walkinlab.com/products/view/testosterone-free-weakly-bound-blood-test",
-      "checked": "2026-11-13",
-      "verified": true
+      "checked": "2026-11-17",
+      "verified": true,
+      "watch": [
+        {
+          "field": "price",
+          "pattern": "Add to Cart: \\$([\\d.]+)"
+        }
+      ]
     }
   ],
   "recentChanges": [
