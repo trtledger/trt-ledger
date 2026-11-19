@@ -1,4 +1,4 @@
-# Price check — 2026-11-18
+# Price check — 2026-11-19
 
 - Sources confirmed: 16
 - Price changes: 0
