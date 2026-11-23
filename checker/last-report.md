@@ -1,10 +1,10 @@
-# Price check — 2026-11-22
+# Price check — 2026-11-23
 
-- Sources confirmed: 16
+- Sources confirmed: 15
 - Price changes: 0
 - Held for review (jump over 50%): 0
 - Rules repaired automatically: 0
-- Couldn't read: 4
+- Couldn't read: 5
 - Site blocks automated checks: 0
 - Site was down (retried next week): 0
 
@@ -14,6 +14,7 @@
 - **Marek Health** intake fee ([page](https://marekhealth.com)) — repair failed: TypeError: "Could not resolve authentication method. Expected one of api_key, auth_token, or credentials to be set. Or for the `Authorization` header to be explicitly omitted"
 - **Marek Health** year-1 estimate ([page](https://marekhealth.com)) — repair failed: TypeError: "Could not resolve authentication method. Expected one of api_key, auth_token, or credentials to be set. Or for the `Authorization` header to be explicitly omitted"
 - **Marek Health** average after year one ([page](https://marekhealth.com)) — repair failed: TypeError: "Could not resolve authentication method. Expected one of api_key, auth_token, or credentials to be set. Or for the `Authorization` header to be explicitly omitted"
+- **Viking Alternative Medicine** monthly price ([page](https://vikingalternative.com/pricing/)) — repair failed: TypeError: "Could not resolve authentication method. Expected one of api_key, auth_token, or credentials to be set. Or for the `Authorization` header to be explicitly omitted"
 
 ## Clinic-provided estimates — re-confirm in writing with the clinic before the date
 
