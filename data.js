@@ -195,7 +195,7 @@ window.TRT_DATA = {
       "watch": [
         {
           "field": "monthly",
-          "pattern": "\\$(\\d+) ?/month plus cost of medication",
+          "pattern": "\\$(\\d+) ?/month \\+ medication",
           "pick": "max"
         }
       ],
@@ -208,7 +208,7 @@ window.TRT_DATA = {
       "name": "Marek Health",
       "url": "https://marekhealth.com",
       "sourceUrl": "https://marekhealth.com",
-      "checked": "2026-11-17",
+      "checked": "2026-11-24",
       "verified": true,
       "model": "Pay as you go",
       "monthly": null,
@@ -217,7 +217,7 @@ window.TRT_DATA = {
       "labsIncluded": false,
       "labFee": 450,
       "medsIncluded": false,
-      "clinicYear1Estimate": 1599,
+      "clinicYear1Estimate": null,
       "forms": [],
       "aiIncluded": null,
       "hcg": "Not listed",
@@ -230,23 +230,16 @@ window.TRT_DATA = {
       ],
       "watchOuts": [
         "Highest upfront cost ($299 + $450 labs)",
-        "Doesn't bill insurance"
+        "Doesn't bill insurance",
+        "Marek no longer shows a first-year or year-2 average on its site (last shown Nov 17, 2026); the first-year total here now uses the published $299 intake and $450 labs plus your medication assumption",
+        "The page lists ongoing treatment at $80–200/month; medication isn't priced individually"
       ],
       "watch": [
         {
           "field": "intakeFee",
-          "pattern": "\\$(\\d+) to get started"
-        },
-        {
-          "field": "clinicYear1Estimate",
-          "pattern": "Year 1 avg\\. spend\\*? ~\\$\\d+ ?/mo ~\\$([\\d,]+) annual"
-        },
-        {
-          "field": "ongoingMonthly",
-          "pattern": "Year 2\\+ avg\\. spend\\*? ~\\$(\\d+) ?/mo"
+          "pattern": "Regular price \\$(\\d+)"
         }
-      ],
-      "ongoingMonthly": 70
+      ]
     },
     {
       "id": "peter-md",
@@ -404,7 +397,7 @@ window.TRT_DATA = {
       ],
       "aiIncluded": null,
       "hcg": "Not mentioned on the TRT product page",
-      "commitment": "The product page shows only a 'starting at' $149/mo price (checked Nov 13, 2026). On Nov 9 it listed $149/mo on a 12-month prepaid plan ($1,788), $189/mo on 6 months and $229/mo month-to-month; those terms are no longer shown. Confirm the term and total with Feel30 before you pay",
+      "commitment": "As of Nov 20, 2026 the product page shows '$149/mo billed annually' (struck-through $299.99). It doesn't state the annual total, and no month-to-month or 6-month price is shown on that page. On Nov 9 it listed $149/mo on 12 months prepaid ($1,788), $189/mo on 6 months and $229/mo month-to-month. Confirm the term and total with Feel30 before you pay",
       "states": "Not listed",
       "highlights": [
         "Testosterone cypionate injections 'starting at' $149/mo",
@@ -414,7 +407,7 @@ window.TRT_DATA = {
         "Guarantee of 10% total-testosterone increase for first-time patients or medication is free"
       ],
       "watchOuts": [
-        "Term prices aren't on the public page now. When last shown (Nov 9, 2026), $149/mo needed $1,788 paid upfront for 12 months and the month-to-month price was $229",
+        "The page says $149/mo is 'billed annually' but doesn't show the annual total (12 × $149 = $1,788) or any shorter-term price. On Nov 9, 2026 the month-to-month price was $229",
         "A struck-through $399.99 appears next to the $149 price; the page doesn't say what plan that price was for",
         "No anastrozole (estrogen blocker) or hCG mentioned",
         "States served not listed",
@@ -680,7 +673,7 @@ window.TRT_DATA = {
       "name": "Somira Health",
       "url": "https://somirahealth.com",
       "sourceUrl": "https://somirahealth.com/mens-health/",
-      "checked": "2026-11-13",
+      "checked": "2026-11-24",
       "verified": true,
       "model": "Pay per plan, no subscription",
       "monthly": 100,
@@ -711,7 +704,7 @@ window.TRT_DATA = {
       "name": "Talon Wellness",
       "url": "https://www.talonwellness.com",
       "sourceUrl": "https://www.talonwellness.com/trt-price-breakdown",
-      "checked": "2026-11-13",
+      "checked": "2026-11-24",
       "verified": true,
       "model": "Pay per vial, no membership",
       "monthly": null,
@@ -762,6 +755,12 @@ window.TRT_DATA = {
         "Extra syringes ($1 per IM set, $5 per 10 SQ), HCG, semaglutide and tirzepatide cost extra; prices not listed",
         "Modeled at 140 mg/week; the clinic's own totals run $640 (100 mg/week) to $887 (200 mg/week)",
         "Start: $75 consult + $99 labs + first $80 vial + $15 shipping + $2.40 card fee"
+      ],
+      "watch": [
+        {
+          "field": "clinicYear1Estimate",
+          "pattern": "First-year base total \\$[\\d,.]+ \\$([\\d,.]+) \\$[\\d,.]+"
+        }
       ]
     },
     {
@@ -769,7 +768,7 @@ window.TRT_DATA = {
       "name": "Andronyx",
       "url": "https://andronyx.care",
       "sourceUrl": "https://andronyx.care",
-      "checked": "2026-11-13",
+      "checked": "2026-11-24",
       "verified": true,
       "sourceType": "clinic-provided",
       "sourceDate": "2026-11-06",
@@ -824,7 +823,7 @@ window.TRT_DATA = {
         "https://prescribedrx.com/plans/health-assessment-trt/",
         "https://prescribedrx.com/plans/trt-cream/"
       ],
-      "checked": "2026-11-13",
+      "checked": "2026-11-24",
       "verified": true,
       "model": "Billed every 3 months",
       "monthly": 129,
@@ -895,6 +894,51 @@ window.TRT_DATA = {
         {
           "field": "monthly",
           "pattern": "12-month commitment \\$ ?(\\d+) ?/month"
+        }
+      ]
+    },
+    {
+      "id": "joi-blokes",
+      "name": "Joi + Blokes",
+      "url": "https://joiandblokes.com",
+      "sourceUrl": "https://joiandblokes.com/shop/men/hormone-health/testosterone-replacement-therapy/",
+      "checked": "2026-11-24",
+      "verified": true,
+      "model": "Prepaid plan",
+      "monthly": 99,
+      "intakeFee": null,
+      "labsIncluded": null,
+      "labFee": null,
+      "medsIncluded": true,
+      "clinicYear1Estimate": null,
+      "forms": [
+        "injection"
+      ],
+      "aiIncluded": null,
+      "hcg": "Not listed",
+      "commitment": "$99/mo on a 12-month commitment ($1,188 upfront); $129/mo on 6 months ($774 upfront); $149/mo on 3 months ($447 upfront). Page says 'Easy cancellations'",
+      "states": "All except AL, AR, CT, DE, GA, HI, LA, MN, MO, MS, NC, ND, OK, PA, RI, SC",
+      "highlights": [
+        "Page says all TRT plans include medication, two lab panels and two clinician consultations per year",
+        "First follow-up lab and clinician visit about 6 weeks after starting, then one of each every 6 months",
+        "Page says 'One membership, everything included. No add-on charges or hidden membership fees'"
+      ],
+      "watchOuts": [
+        "The $99/mo price needs a 12-month commitment paid upfront ($1,188); 6 months is $129/mo and 3 months is $149/mo",
+        "Page says to start for $52 (due today for initial lab testing, before any plan is prescribed); it doesn't say whether this panel counts as one of the two lab panels per year, and no intake amount is included in this estimate. On Nov 20, 2026 the page said 'Start now for $75'",
+        "Page says different lab pricing applies in NY and NJ; those prices aren't shown",
+        "Plan renews automatically at the end of the term; cancellation takes effect at the end of the paid term and partial periods are nonrefundable",
+        "Capsule and cream options are not priced on this page"
+      ],
+      "prepaid": 1188,
+      "watch": [
+        {
+          "field": "monthly",
+          "pattern": "\\$(\\d+)/month \\(\\$[\\d,]+ for 12 months\\)"
+        },
+        {
+          "field": "prepaid",
+          "pattern": "\\$\\d+/month \\(\\$([\\d,]+) for 12 months\\)"
         }
       ]
     }
@@ -1099,34 +1143,28 @@ window.TRT_DATA = {
       "checked": "2026-11-04"
     },
     {
-      "name": "Joi + Blokes",
-      "url": "https://joiandblokes.com/shop/men/hormone-health/testosterone-replacement-therapy/",
-      "note": "The current TRT page describes clinician visits, medication delivery and quarterly labs, but does not display a price. The previous $99/month figure could not be reconfirmed.",
-      "checked": "2026-11-04"
-    },
-    {
       "name": "Maximus",
       "url": "https://www.maximustribe.com/testosterone/Testosterone-Cream",
-      "note": "Offers testosterone cream and other treatment options. The current official cream page does not publish plan prices; previous third-party pricing is not used for ranking.",
-      "checked": "2026-11-04"
+      "note": "As of Nov 20, 2026 the cream page lists $179.99/mo month to month, $119.99/mo on a 3-month plan and $99.99/mo on a 9-month plan ($899.91 billed upfront), with 'pricing varies by dosage and plan length'. It doesn't say whether labs or consults are included or which states are served, so a full first-year cost can't be verified.",
+      "checked": "2026-11-20"
     },
     {
       "name": "H4M Wellness (HormonesForMe)",
       "url": "https://goh4m.com/",
       "note": "Custom wellness plans start at $235 per 3 months, with free consult and onboarding; labs are separate. The page does not establish a complete testosterone-specific cost, so this is not ranked.",
-      "checked": "2026-11-04"
+      "checked": "2026-11-24"
     },
     {
       "name": "Ryze HRT",
       "url": "https://www.ryzehrt.com",
       "note": "Online, all 50 states. Men's HRT \"starting as low as $85/month\"; what that includes and lab costs are not published, so no first-year total yet",
-      "checked": "2026-11-07"
+      "checked": "2026-11-24"
     },
     {
       "name": "Gatlan Health",
       "url": "https://gatlan.com/mens-health-products/",
       "note": "Testosterone \"as low as $125/mo\", but what that includes, lab costs and states aren't published",
-      "checked": "2026-11-11"
+      "checked": "2026-11-24"
     },
     {
       "name": "Thrivelab",
@@ -1172,7 +1210,7 @@ window.TRT_DATA = {
       "watch": [
         {
           "field": "total",
-          "pattern": "\\$([\\d.]+) Order Ulta Lab Tests"
+          "pattern": "Your total price should be \\$([\\d.]+) \\( \\$[\\d.]+ panels price \\+ \\$[\\d.]+ requisition charge\\)"
         }
       ]
     },
@@ -1183,7 +1221,7 @@ window.TRT_DATA = {
       "price": 59.0,
       "fees": 6.0,
       "sourceUrl": "https://www.walkinlab.com/products/view/testosterone-total-blood-test-male-only",
-      "checked": "2026-11-13",
+      "checked": "2026-11-24",
       "verified": true
     },
     {
@@ -1193,7 +1231,7 @@ window.TRT_DATA = {
       "price": 139.0,
       "fees": 6.0,
       "sourceUrl": "https://www.walkinlab.com/products/view/testosterone-free-bioavailable-total-blood-test-lc-ms-ms",
-      "checked": "2026-11-13",
+      "checked": "2026-11-24",
       "verified": true
     },
     {
@@ -1203,7 +1241,7 @@ window.TRT_DATA = {
       "price": 139.0,
       "fees": 6.0,
       "sourceUrl": "https://www.walkinlab.com/products/view/testosterone-free-weakly-bound-blood-test",
-      "checked": "2026-11-13",
+      "checked": "2026-11-24",
       "verified": true
     }
   ],
